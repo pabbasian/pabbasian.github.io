@@ -1,102 +1,121 @@
+/* Modern Theme Overrides */
+/* This file provides additional theming for the modernized website */
 
-/* page header */
-.header {
-  margin: 0 0 2.5em;
-  padding-top: 2.8em;
-}
-
-.logo h2 {
-  font-weight: bolder;
-  font-style: oblique;
+/* Enhanced background animation opacity for better text readability */
+#bg-canvas {
+  opacity: 0.4;
 }
 
-.header h1 {
-  /* unused */
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
 }
 
-.header .author {
-  /* unused */
+/* Additional hover effects for interactive elements */
+.highlight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1);
 }
 
-.header .description {
-  /* unused */
-}
-#bg-container {
-  position: absolute;
-}
-#content h1 {
-  font-size: 2.6em;
-  text-align: center;
-  font-weight: 700;
-  margin: 0;
+/* Enhanced navigation active states */
+.nav-links a.active {
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
-#content .author {
-  font-family: 'Merriweather', serif;
-  font-variant: small-caps;
-  text-transform: lowercase;
-  text-rendering: auto;
-  text-align: center;
-  font-weight: 400;
-  letter-spacing: 1px;
+/* Professional focus states for accessibility */
+.cta-primary:focus,
+.cta-secondary:focus,
+.nav-links a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
-/* navigation */
-nav {
-  float: right;
-  margin-bottom: 0.15em;
+/* Subtle animation for skill tags */
+.skill-tag {
+  transition: all 0.2s ease;
 }
 
-nav a {
-  padding: 0.5em;
+.skill-tag:hover {
+  transform: translateY(-1px) scale(1.05);
 }
 
-nav label {
-  cursor: pointer;
+/* Enhanced project card interactions */
+.project-card:hover .project-role {
+  color: var(--primary-dark);
 }
 
-nav ul {
-  margin: 0;
-}
-
-#menu-toggle {
-  display: none;
-}
-
-@media (max-width: 690px) {
-  .header .description {
-    /* unused */
+/* Loading states and animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* menu media queries */
-@media only screen and (max-width: 600px) {
-  #menu {
+.hero-content {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Print styles for CV */
+@media print {
+  .main-nav,
+  .hero,
+  .cta-section,
+  .footer,
+  #bg-canvas {
     display: none;
   }
-
-  #menu-toggle:checked + #menu {
-    display: block;
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
   }
-
-  nav ul {
-    position: absolute;
-    right: 10;
-
-    background: #DEDEDE;
+  
+  .section-title {
+    color: black;
+    page-break-after: avoid;
   }
-
-  nav ul a {
-    display: block;
+  
+  .project-card,
+  .skill-category,
+  .highlight-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    break-inside: avoid;
   }
 }
 
-@media only screen and (min-width: 601px) {
-  nav label {
-    display: none;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #0000ff;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --border-color: #000000;
   }
+  
+  .project-card,
+  .skill-category,
+  .highlight-card {
+    border: 2px solid var(--border-color);
+  }
+}
 
-  #menu {
-    display: inline;
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .hero-content {
+    animation: none;
   }
 }
