@@ -1,45 +1,89 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
+# Enhanced Sitemaps for German Market
 Sitemap: https://pabbasian.com/sitemap.xml
+Sitemap: https://pabbasian.com/feed.xml
 
-# RSS Feed
+# RSS Feed for content syndication
 Allow: /feed.xml
 
-# Main pages
+# Main portfolio pages
 Allow: /cv.html
 Allow: /contact.html
 Allow: /archive.html
 Allow: /cv.pdf
+Allow: /payman-cv.pdf
 
-# CSS and JS files
+# Static assets for performance
 Allow: /css/
 Allow: /js/
+Allow: /favicon.ico
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.woff2$
+Allow: /*.woff$
+Allow: /*.ttf$
+Allow: /*.svg$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.webp$
 
-# Disallow archive directories if not needed
+# Disallow unnecessary directories
 Disallow: /Archive/
 Disallow: /articles/hello-world/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /.vscode/
 
-# Crawl delay (optional - helps with server load)
+# Default crawl delay for server optimization
 Crawl-delay: 1
 
-# Specific instructions for major search engines
+# Enhanced directives for major search engines
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
+Request-rate: 1/1s
 
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
+Request-rate: 1/2s
 
 User-agent: Slurp
 Allow: /
 Crawl-delay: 1
 
-# Block any unwanted bots (uncomment if needed)
-# User-agent: AhrefsBot
-# Disallow: /
-# 
-# User-agent: MJ12bot
-# Disallow: /
+# European search engines (important for German market)
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Block resource-intensive crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+# Additional crawl optimization for industrial content
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: TwitterBot
+Allow: /
