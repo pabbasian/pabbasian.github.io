@@ -1,0 +1,45 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://pabbasian.com/sitemap.xml
+
+# RSS Feed
+Allow: /feed.xml
+
+# Main pages
+Allow: /cv.html
+Allow: /contact.html
+Allow: /archive.html
+Allow: /cv.pdf
+
+# CSS and JS files
+Allow: /css/
+Allow: /js/
+
+# Disallow archive directories if not needed
+Disallow: /Archive/
+Disallow: /articles/hello-world/
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block any unwanted bots (uncomment if needed)
+# User-agent: AhrefsBot
+# Disallow: /
+# 
+# User-agent: MJ12bot
+# Disallow: /
