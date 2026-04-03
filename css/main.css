@@ -21,12 +21,21 @@
   --primary-light: #64ffda;
   --primary-dark: #4fd1c7;
   --accent-glow: rgba(100, 255, 218, 0.1);
+  --accent-glow-strong: rgba(100, 255, 218, 0.15);
   --border-color: #233554;
   --shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
   --shadow-lg: 0 20px 40px -10px rgba(2, 12, 27, 0.8);
+  --shadow-glow: 0 0 20px rgba(100, 255, 218, 0.15);
   --radius: 4px;
+  --radius-lg: 8px;
   --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --transition-slow: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(17, 34, 64, 0.6);
+  --glass-border: rgba(100, 255, 218, 0.1);
+  --glass-blur: blur(12px);
 }
 
 body {
@@ -266,12 +275,20 @@ a.inline-link::after {
   left: 0;
   right: 0;
   background: rgba(10, 25, 47, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.05);
   z-index: 1000;
   padding: 0 50px;
   height: 100px;
   box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+  transition: var(--transition-slow);
+}
+
+.main-nav.scrolled {
+  height: 80px;
+  background: rgba(10, 25, 47, 0.95);
+  box-shadow: var(--shadow-lg);
 }
 
 .nav-container {
@@ -304,11 +321,30 @@ a.inline-link::after {
   text-align: center;
   border: 2px solid var(--primary-color);
   border-radius: 4px;
+  position: relative;
+  transition: var(--transition-slow);
+}
+
+.brand-link::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary-color), transparent 50%);
+  opacity: 0;
+  z-index: -1;
+  transition: var(--transition);
 }
 
 .brand-link:hover,
 .brand-link:focus {
   background: rgba(100, 255, 218, 0.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.brand-link:hover::before {
+  opacity: 0.2;
 }
 
 .brand-subtitle {
@@ -441,14 +477,31 @@ a.inline-link::after {
   transition: var(--transition);
   margin-top: 50px;
   display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn:hover,
 .btn:focus,
 .btn:active {
   background-color: rgba(100, 255, 218, 0.1);
-  transform: translate3d(0, -1px, 0);
-  box-shadow: 0 2px 4px rgba(2, 12, 27, 0.1);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
 }
 
 .cta-primary, .cta-secondary, .btn-primary, .btn-secondary {
@@ -734,7 +787,7 @@ section {
 .jobs-tab {
   border-left: 2px solid var(--bg-tertiary);
   background-color: transparent;
-  height: 42px;
+  height: 46px;
   padding: 0 20px 2px;
   border: none;
   border-left: 2px solid var(--bg-tertiary);
@@ -745,7 +798,7 @@ section {
   text-align: left;
   white-space: nowrap;
   cursor: pointer;
-  transition: var(--transition);
+  transition: var(--transition-slow);
   display: flex;
   align-items: center;
   width: 100%;
@@ -754,19 +807,39 @@ section {
   position: relative;
 }
 
+.jobs-tab::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--primary-color);
+  transform: scaleY(0);
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
 .jobs-tab:hover,
 .jobs-tab:active,
 .jobs-tab:focus {
   color: var(--primary-color);
   outline: 0;
-  border-left-color: var(--primary-color);
-  background-color: rgba(100, 255, 218, 0.1);
-  transform: translateX(1px);
+  background-color: rgba(100, 255, 218, 0.08);
+  transform: translateX(3px);
+}
+
+.jobs-tab:hover::after {
+  transform: scaleY(1);
 }
 
 .jobs-tab.active {
   color: var(--primary-color);
   border-left-color: var(--primary-color);
+  background-color: rgba(100, 255, 218, 0.05);
+}
+
+.jobs-tab.active::after {
+  transform: scaleY(1);
 }
 
 .jobs-content {
@@ -878,17 +951,45 @@ section {
 
 .achievement-item {
   text-align: center;
-  padding: 20px;
-  background: rgba(100, 255, 218, 0.05);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  transition: var(--transition);
+  padding: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-item::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(100, 255, 218, 0.1), transparent 30%);
+  animation: rotate 4s linear infinite paused;
+  opacity: 0;
 }
 
 .achievement-item:hover {
-  background: rgba(100, 255, 218, 0.08);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
+  background: rgba(100, 255, 218, 0.1);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(100, 255, 218, 0.3);
+}
+
+.achievement-item:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .achievement-item h4 {
@@ -937,16 +1038,38 @@ section {
 }
 
 .expertise-column {
-  background: rgba(17, 34, 64, 0.3);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.expertise-column::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  opacity: 0;
   transition: var(--transition);
 }
 
 .expertise-column:hover {
-  background: rgba(17, 34, 64, 0.5);
-  transform: translateY(-2px);
+  background: rgba(17, 34, 64, 0.7);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(100, 255, 218, 0.3);
+}
+
+.expertise-column:hover::before {
+  opacity: 1;
 }
 
 .expertise-column h5 {
@@ -1006,19 +1129,40 @@ section {
 }
 
 .project-card {
-  background: var(--bg-secondary);
-  border-radius: var(--radius);
-  padding: 25px;
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-  border: 1px solid var(--border-color);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: var(--transition-slow);
+  border: 1px solid var(--glass-border);
   position: relative;
   animation: float 6s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(100, 255, 218, 0.03) 0%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition);
+  pointer-events: none;
 }
 
 .project-card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
-  background: var(--bg-tertiary);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  background: rgba(17, 34, 64, 0.8);
+  border-color: rgba(100, 255, 218, 0.25);
+}
+
+.project-card:hover::after {
+  opacity: 1;
 }
 
 .project-card:nth-child(2) {
@@ -1589,16 +1733,34 @@ section {
 
 .language-item {
   text-align: center;
-  padding: 20px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
+  padding: 24px 20px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.language-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 0.05) 0%, transparent 50%);
+  opacity: 0;
   transition: var(--transition);
 }
 
 .language-item:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(100, 255, 218, 0.3);
+}
+
+.language-item:hover::before {
+  opacity: 1;
 }
 
 .language-item h3 {

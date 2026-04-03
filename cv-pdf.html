@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Payman Abbasian</title>
     <style>
-        /* PDF-optimized CV styles */
+        /* PDF-optimized CV styles - Modern Professional Design */
         @page {
             size: A4;
-            margin: 20mm;
+            margin: 15mm;
         }
         
         * {
@@ -16,13 +16,13 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.5;
-            color: #8892b0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #334155;
             background: #0a192f;
             margin: 0;
             padding: 0;
-            font-size: 11pt;
+            font-size: 10.5pt;
         }
         
         .cv-container {
@@ -32,253 +32,436 @@
             padding: 0;
         }
         
-        /* Header Section */
+        /* Header Section - Modern Professional */
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #0a192f;
-            padding-bottom: 20px;
-            background: #f8f9fa;
-            color: #0a192f;
+            margin-bottom: 25px;
+            padding: 30px 40px;
+            background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+            color: white;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #64ffda, #4fd1c7, #64ffda);
         }
         
         .header h1 {
-            font-size: 28pt;
-            margin: 0 0 5px 0;
-            color: #0a192f;
-            font-weight: 600;
+            font-size: 32pt;
+            margin: 0 0 8px 0;
+            color: #ccd6f6;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
         .header .title {
-            font-size: 14pt;
-            color: #0a192f;
-            margin: 5px 0 15px 0;
+            font-size: 13pt;
+            color: #64ffda;
+            margin: 8px 0 18px 0;
             font-weight: 500;
+            letter-spacing: 0.5px;
         }
         
         .contact-info {
-            font-size: 10pt;
-            color: #495670;
+            font-size: 9.5pt;
+            color: #8892b0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
         
         .contact-info span {
-            margin: 0 15px;
+            padding: 4px 12px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
         }
         
-        /* Section Styling */
+        /* Section Styling - Modern Cards */
         .section {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             page-break-inside: avoid;
             background: white;
-            padding: 20px;
-            color: #495670;
+            padding: 20px 25px;
+            color: #334155;
+            border-radius: 8px;
+            margin-left: 15px;
+            margin-right: 15px;
         }
         
         .section h2 {
-            font-size: 14pt;
-            color: #ccd6f6;
-            background: #0a192f;
-            padding: 8px 15px;
-            margin: 0 -15px 15px -15px;
+            font-size: 12pt;
+            color: white;
+            background: linear-gradient(135deg, #0a192f 0%, #1a365d 100%);
+            padding: 10px 18px;
+            margin: -20px -25px 18px -25px;
             font-weight: 600;
-            border-radius: 4px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.3px;
+        }
+        
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 18px;
+            background: #64ffda;
+            border-radius: 2px;
         }
         
         /* Professional Summary */
         .summary {
-            font-size: 11pt;
-            line-height: 1.6;
+            font-size: 10.5pt;
+            line-height: 1.7;
             text-align: justify;
+            color: #475569;
+            border-left: 3px solid #64ffda;
+            padding-left: 15px;
+            margin-left: 5px;
         }
         
-        /* Experience Section */
+        /* Experience Section - Timeline Style */
         .job {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             page-break-inside: avoid;
+            position: relative;
+            padding-left: 15px;
+            border-left: 2px solid #e2e8f0;
+        }
+        
+        .job::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            background: #64ffda;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px #0a192f;
         }
         
         .job-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
         
         .job-title {
-            font-size: 12pt;
+            font-size: 11pt;
             font-weight: 600;
-            color: #495670;
+            color: #1e293b;
         }
         
         .job-company {
             color: #0a192f;
-            font-weight: 500;
+            font-weight: 600;
         }
         
         .job-date {
-            font-size: 10pt;
-            color: #8892b0;
+            font-size: 9pt;
+            color: #64748b;
             font-weight: 500;
+            background: #f1f5f9;
+            padding: 2px 10px;
+            border-radius: 12px;
         }
         
         .job-description ul {
             margin: 8px 0;
-            padding-left: 20px;
+            padding-left: 18px;
         }
         
         .job-description li {
-            margin-bottom: 4px;
-            line-height: 1.4;
+            margin-bottom: 5px;
+            line-height: 1.5;
+            color: #475569;
+            font-size: 9.5pt;
         }
         
-        /* Skills Section */
+        .job-description li::marker {
+            color: #64ffda;
+        }
+        
+        /* Skills Section - Modern Grid with Pills */
         .skills-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 18px;
+        }
+        
+        .skill-category {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
         }
         
         .skill-category h4 {
-            font-size: 11pt;
-            color: #ccd6f6;
-            background: #0a192f;
-            padding: 5px 10px;
-            margin: 0 0 8px 0;
+            font-size: 10pt;
+            color: white;
+            background: linear-gradient(135deg, #0a192f 0%, #1a365d 100%);
+            padding: 6px 12px;
+            margin: -15px -15px 12px -15px;
             font-weight: 600;
-            border-radius: 3px;
-            display: inline-block;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .skill-category ul {
             margin: 0;
-            padding-left: 15px;
-            list-style-type: disc;
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
         }
         
         .skill-category li {
-            font-size: 10pt;
-            margin-bottom: 3px;
+            font-size: 8.5pt;
+            background: white;
+            color: #334155;
+            padding: 4px 10px;
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
             line-height: 1.3;
         }
         
-        /* Key Achievements */
+        /* Key Achievements - Modern Icons */
         .achievements ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
         
         .achievements li {
-            margin-bottom: 8px;
-            padding-left: 20px;
+            padding: 12px 15px;
+            padding-left: 35px;
             position: relative;
-            line-height: 1.4;
+            line-height: 1.5;
+            background: linear-gradient(135deg, #f0fdf9 0%, #f8fafc 100%);
+            border-radius: 8px;
+            border-left: 3px solid #64ffda;
+            font-size: 9.5pt;
+            color: #334155;
         }
         
         .achievements li::before {
-            content: "▸";
+            content: "✓";
             color: #0a192f;
             font-weight: bold;
             position: absolute;
-            left: 0;
+            left: 12px;
+            top: 12px;
+            width: 18px;
+            height: 18px;
+            background: #64ffda;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        /* Education Section */
+        /* Education Section - Clean Cards */
         .education-item {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            padding: 12px 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 3px solid #64ffda;
         }
         
         .education-title {
             font-weight: 600;
-            color: #495670;
+            color: #1e293b;
+            font-size: 10.5pt;
         }
         
         .education-institution {
             color: #0a192f;
             font-weight: 500;
-        }
-        
-        .education-date {
-            color: #8892b0;
             font-size: 10pt;
         }
         
-        /* Projects Section */
+        .education-date {
+            color: #64748b;
+            font-size: 9pt;
+            margin-top: 4px;
+        }
+        
+        /* Projects Section - Modern Cards */
         .project {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             page-break-inside: avoid;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
         }
         
         .project-title {
             font-weight: 600;
-            color: #495670;
-            margin-bottom: 3px;
+            color: #0a192f;
+            margin-bottom: 4px;
+            font-size: 10.5pt;
         }
         
         .project-company {
-            color: #0a192f;
-            font-size: 10pt;
-            margin-bottom: 5px;
+            color: #64ffda;
+            background: #0a192f;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 8pt;
+            display: inline-block;
+            margin-bottom: 8px;
         }
         
         .project-description {
-            font-size: 10pt;
-            line-height: 1.4;
+            font-size: 9.5pt;
+            line-height: 1.5;
+            color: #475569;
         }
         
         .project-tech {
-            margin-top: 5px;
-            font-size: 9pt;
-            color: #8892b0;
-            font-style: italic;
+            margin-top: 8px;
+            font-size: 8.5pt;
+            color: #64748b;
+            padding-top: 8px;
+            border-top: 1px dashed #e2e8f0;
+        }
+        
+        .project-tech::before {
+            content: "🛠 ";
         }
         
         /* Two-column layout for some sections */
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 15px;
+        }
+        
+        /* Domain expertise cards */
+        .two-column .skill-category {
+            background: linear-gradient(135deg, #f0fdf9 0%, #f8fafc 100%);
+            border: 1px solid #d1fae5;
+        }
+        
+        .two-column .skill-category h4 {
+            background: linear-gradient(135deg, #0a192f 0%, #134e4a 100%);
         }
         
         /* Print optimizations */
         @media print {
             body { 
-                font-size: 10pt;
+                font-size: 9.5pt;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
                 background: white !important;
             }
             
+            .cv-container {
+                box-shadow: none;
+            }
+            
             .header {
-                background: #f8f9fa !important;
-                color: #0a192f !important;
+                background: linear-gradient(135deg, #0a192f 0%, #112240 100%) !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .header h1 {
+                color: #ccd6f6 !important;
+            }
+            
+            .header .title {
+                color: #64ffda !important;
             }
             
             .section {
                 background: white !important;
-                color: #495670 !important;
+                color: #334155 !important;
+                margin-left: 0;
+                margin-right: 0;
             }
             
             .section h2 {
-                color: #ccd6f6 !important;
-                background: #0a192f !important;
+                color: white !important;
+                background: linear-gradient(135deg, #0a192f 0%, #1a365d 100%) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .skill-category {
+                background: #f8fafc !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
             
             .skill-category h4 {
-                color: #ccd6f6 !important;
-                background: #0a192f !important;
+                color: white !important;
+                background: linear-gradient(135deg, #0a192f 0%, #1a365d 100%) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
             
-            .job-company, .education-institution, .project-company {
-                color: #0a192f !important;
+            .job::before {
+                background: #64ffda !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .achievements li {
+                background: #f0fdf9 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
             
             .achievements li::before {
-                color: #0a192f !important;
+                background: #64ffda !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .project {
+                background: #f8fafc !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .project-company {
+                background: #0a192f !important;
+                color: #64ffda !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .education-item {
+                background: #f8fafc !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
             
             .section {
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             
             .page-break {
@@ -292,12 +475,12 @@
         <!-- Header -->
         <header class="header">
             <h1>Payman Abbasian</h1>
-            <div class="title">Industrial IoT & SCADA Architect | Technical Product Developer</div>
+            <div class="title">Industrial IoT & SCADA Architect • Technical Product Developer</div>
             <div class="contact-info">
                 <span>📧 info@pabbasian.com</span>
                 <span>🌐 pabbasian.com</span>
                 <span>📍 Essen, Germany</span>
-                <span>🔗 linkedin.com/in/paaymanabbasian</span>
+                <span>💼 linkedin.com/in/paaymanabbasian</span>
             </div>
         </header>
 

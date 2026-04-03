@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Space Shooter</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+      touch-action: none;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100vh;
+    }
+    #ui-layer {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+    }
+    #hud {
+      font-family: monospace;
+      color: white;
+      padding: 20px;
+      text-align: right;
+      font-size: 16px;
+    }
+    #game-over, #start-screen {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      pointer-events: auto;
+    }
+    .hidden { display: none !important; }
+    .btn {
+      background: none;
+      border: 1px solid #666;
+      color: white;
+      padding: 12px 30px;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: monospace;
+    }
+    .btn:hover { border-color: #fff; }
+  </style>
+</head>
+<body>
+  <canvas id="game-canvas"></canvas>
+
+  <div id="ui-layer">
+    <div id="hud" class="hidden">
+      LEVEL: <span id="level-val">1</span> &nbsp; SCORE: <span id="score-val">0</span> &nbsp; LIVES: <span id="lives-val">3</span>
+    </div>
+
+    <div id="start-screen">
+      <h1 style="color:white;margin-bottom:20px;font-family:monospace;">SPACE SHOOTER</h1>
+      <p style="color:#aaa;font-size:14px;line-height:1.8;font-family:monospace;">
+        Touch: Drag left/center 70% to move. Tap right 30% to fire.<br>
+        Auto-fire after 1.5s continuous drag.<br><br>
+        Keyboard: WASD/Arrows move, Space fire, R restart.<br><br>
+        Three lives. No continues. Survive.
+      </p>
+      <button id="start-btn" class="btn">START GAME</button>
+    </div>
+
+    <div id="game-over" class="hidden">
+      <h1 style="color:white;margin-bottom:15px;font-family:monospace;">GAME OVER</h1>
+      <p style="color:#aaa;font-size:20px;font-family:monospace;">LEVEL: <span id="final-level"></span> &nbsp; SCORE: <span id="final-score"></span></p>
+      <button id="restart-btn" class="btn">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script src="src/game.js"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      // ===== AUDIO ENGINE (Web Audio API, fully procedural) =====
+      var audioCtx = null;
+      var ambientNodes = null;
+
+      function initAudio() {
+        if (audioCtx) return;
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+      }
+
+      function startAmbient() {
+        if (!audioCtx || ambientNodes) return;
+        ambientNodes = {};
+        var master = audioCtx.createGain();
+        master.gain.value = 0.12;
+        master.connect(audioCtx.destination);
+        ambientNodes.master = master;
+
+        // Drone 1: deep sub bass
+        var osc1 = audioCtx.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.value = 38;
+        var g1 = audioCtx.createGain();
+        g1.gain.value = 0.6;
+        osc1.connect(g1);
+        g1.connect(master);
+        osc1.start();
+        ambientNodes.osc1 = osc1;
+
+        // Drone 2: dark fifth
+        var osc2 = audioCtx.createOscillator();
+        osc2.type = 'sine';
+        osc2.frequency.value = 57;
+        var g2 = audioCtx.createGain();
+        g2.gain.value = 0.3;
+        osc2.connect(g2);
+        g2.connect(master);
+        osc2.start();
+        ambientNodes.osc2 = osc2;
+
+        // Drone 3: high whisper with slow LFO
+        var osc3 = audioCtx.createOscillator();
+        osc3.type = 'triangle';
+        osc3.frequency.value = 220;
+        var g3 = audioCtx.createGain();
+        g3.gain.value = 0.0;
+        osc3.connect(g3);
+        g3.connect(master);
+        osc3.start();
+        ambientNodes.osc3 = osc3;
+        ambientNodes.g3 = g3;
+
+        // LFO to modulate the whisper volume
+        var lfo = audioCtx.createOscillator();
+        lfo.type = 'sine';
+        lfo.frequency.value = 0.08;
+        var lfoGain = audioCtx.createGain();
+        lfoGain.gain.value = 0.04;
+        lfo.connect(lfoGain);
+        lfoGain.connect(g3.gain);
+        lfo.start();
+        ambientNodes.lfo = lfo;
+
+        // Slow pitch drift on the sub
+        var drift = audioCtx.createOscillator();
+        drift.type = 'sine';
+        drift.frequency.value = 0.03;
+        var driftGain = audioCtx.createGain();
+        driftGain.gain.value = 3;
+        drift.connect(driftGain);
+        driftGain.connect(osc1.frequency);
+        drift.start();
+        ambientNodes.drift = drift;
+      }
+
+      function stopAmbient() {
+        if (!ambientNodes) return;
+        try {
+          ambientNodes.osc1.stop();
+          ambientNodes.osc2.stop();
+          ambientNodes.osc3.stop();
+          ambientNodes.lfo.stop();
+          ambientNodes.drift.stop();
+        } catch(err) {}
+        ambientNodes = null;
+      }
+
+      function sfxShoot() {
+        if (!audioCtx) return;
+        var t = audioCtx.currentTime;
+        var osc = audioCtx.createOscillator();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(880, t);
+        osc.frequency.exponentialRampToValueAtTime(220, t + 0.08);
+        var g = audioCtx.createGain();
+        g.gain.setValueAtTime(0.08, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start(t);
+        osc.stop(t + 0.1);
+      }
+
+      function sfxHit() {
+        if (!audioCtx) return;
+        var t = audioCtx.currentTime;
+        var osc = audioCtx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(400, t);
+        osc.frequency.exponentialRampToValueAtTime(80, t + 0.12);
+        var g = audioCtx.createGain();
+        g.gain.setValueAtTime(0.1, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start(t);
+        osc.stop(t + 0.15);
+      }
+
+      function sfxDestroy() {
+        if (!audioCtx) return;
+        var t = audioCtx.currentTime;
+        // Noise burst via oscillator detune trick
+        var osc = audioCtx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, t);
+        osc.frequency.exponentialRampToValueAtTime(30, t + 0.3);
+        var osc2 = audioCtx.createOscillator();
+        osc2.type = 'square';
+        osc2.frequency.setValueAtTime(90, t);
+        osc2.frequency.exponentialRampToValueAtTime(20, t + 0.35);
+        var g = audioCtx.createGain();
+        g.gain.setValueAtTime(0.12, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+        osc.connect(g);
+        osc2.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start(t);
+        osc2.start(t);
+        osc.stop(t + 0.35);
+        osc2.stop(t + 0.35);
+      }
+
+      function sfxPlayerHit() {
+        if (!audioCtx) return;
+        var t = audioCtx.currentTime;
+        // Harsh descending noise
+        var osc = audioCtx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(600, t);
+        osc.frequency.exponentialRampToValueAtTime(40, t + 0.5);
+        var osc2 = audioCtx.createOscillator();
+        osc2.type = 'square';
+        osc2.frequency.setValueAtTime(500, t);
+        osc2.frequency.exponentialRampToValueAtTime(25, t + 0.6);
+        var g = audioCtx.createGain();
+        g.gain.setValueAtTime(0.15, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+        osc.connect(g);
+        osc2.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start(t);
+        osc2.start(t);
+        osc.stop(t + 0.6);
+        osc2.stop(t + 0.6);
+      }
+
+      function sfxGameOver() {
+        if (!audioCtx) return;
+        var t = audioCtx.currentTime;
+        // Slow descending tone
+        var osc = audioCtx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(300, t);
+        osc.frequency.exponentialRampToValueAtTime(30, t + 1.5);
+        var g = audioCtx.createGain();
+        g.gain.setValueAtTime(0.15, t);
+        g.gain.linearRampToValueAtTime(0, t + 1.8);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start(t);
+        osc.stop(t + 1.8);
+      }
+
+      function sfxLevelUp() {
+        if (!audioCtx) return;
+        var t = audioCtx.currentTime;
+        // Ascending arpeggio
+        var notes = [440, 554, 659, 880];
+        for (var i = 0; i < notes.length; i++) {
+          var osc = audioCtx.createOscillator();
+          osc.type = 'triangle';
+          var start = t + i * 0.08;
+          osc.frequency.setValueAtTime(notes[i], start);
+          var g = audioCtx.createGain();
+          g.gain.setValueAtTime(0.1, start);
+          g.gain.exponentialRampToValueAtTime(0.001, start + 0.2);
+          osc.connect(g);
+          g.connect(audioCtx.destination);
+          osc.start(start);
+          osc.stop(start + 0.2);
+        }
+      }
+
+      // Level-up flash state
+      var levelUpFlashTimer = 0;
+      var levelUpDisplayLevel = 0;
+
+      // ===== GAME =====
+      var canvas = document.getElementById('game-canvas');
+      var ctx = canvas.getContext('2d');
+      var hud = document.getElementById('hud');
+      var scoreVal = document.getElementById('score-val');
+      var livesVal = document.getElementById('lives-val');
+      var levelVal = document.getElementById('level-val');
+      var startScreen = document.getElementById('start-screen');
+      var gameOverScreen = document.getElementById('game-over');
+      var finalScoreEl = document.getElementById('final-score');
+
+      var ship = null;
+      var starfield = new Starfield(80);
+      var bullets = [];
+      var enemies = [];
+      var score = 0;
+      var level = 1;
+      var lives = 3;
+      var gameRunning = false;
+      var isGameOver = false;
+      var lastTime = 0;
+      var spawnTimer = 0;
+      var respawnTimer = 0;
+      var fireTimer = 0;
+      var autoFireCountdown = 0;
+      var enemyFireTimer = 0;
+
+      var input = {
+        left: false, right: false, up: false, down: false,
+        fire: false, touchActive: false, touchX: 0.5, touchY: 0.8
+      };
+
+      function getLevel() {
+        return Math.floor(score / 5000) + 1;
+      }
+
+      function getLevelDifficulty() {
+        var lv = getLevel();
+        return {
+          spawnMultiplier: 1 + (lv - 1) * 0.3,
+          speedMultiplier: 1 + (lv - 1) * 0.2,
+          trackingMultiplier: 1 + (lv - 1) * 0.15
+        };
+      }
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      // --- Touch ---
+      canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        if (!gameRunning) return;
+        var touch = e.changedTouches[0];
+        var nx = touch.clientX / canvas.width;
+        var ny = touch.clientY / canvas.height;
+
+        if (nx > 0.7) {
+          fireBullet();
+        } else {
+          input.touchActive = true;
+          input.touchX = nx;
+          input.touchY = ny;
+          autoFireCountdown = 1.5;
+        }
+      });
+
+      canvas.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        if (!gameRunning || !input.touchActive) return;
+        var touch = e.changedTouches[0];
+        input.touchX = touch.clientX / canvas.width;
+        input.touchY = touch.clientY / canvas.height;
+      });
+
+      canvas.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        input.touchActive = false;
+        autoFireCountdown = 0;
+      });
+
+      // --- Mouse fallback ---
+      var mouseDown = false;
+      canvas.addEventListener('mousedown', function(e) {
+        if (!gameRunning) return;
+        var nx = e.clientX / canvas.width;
+        var ny = e.clientY / canvas.height;
+        if (nx > 0.7) {
+          fireBullet();
+        } else {
+          mouseDown = true;
+          input.touchActive = true;
+          input.touchX = nx;
+          input.touchY = ny;
+          autoFireCountdown = 1.5;
+        }
+      });
+
+      canvas.addEventListener('mousemove', function(e) {
+        if (!gameRunning || !mouseDown) return;
+        input.touchX = e.clientX / canvas.width;
+        input.touchY = e.clientY / canvas.height;
+      });
+
+      canvas.addEventListener('mouseup', function() {
+        mouseDown = false;
+        input.touchActive = false;
+        autoFireCountdown = 0;
+      });
+
+      // --- Keyboard ---
+      var keys = {};
+      window.addEventListener('keydown', function(e) {
+        keys[e.key] = true;
+        if ((e.key === ' ' || e.code === 'Space') && gameRunning) {
+          e.preventDefault();
+          fireBullet();
+        }
+        if ((e.key === 'r' || e.key === 'R') && isGameOver) {
+          restartGame();
+        }
+      });
+      window.addEventListener('keyup', function(e) {
+        keys[e.key] = false;
+      });
+
+      function updateKeyboardInput() {
+        input.left = !!(keys['a'] || keys['A'] || keys['ArrowLeft']);
+        input.right = !!(keys['d'] || keys['D'] || keys['ArrowRight']);
+        input.up = !!(keys['w'] || keys['W'] || keys['ArrowUp']);
+        input.down = !!(keys['s'] || keys['S'] || keys['ArrowDown']);
+      }
+
+      // --- Game actions ---
+      function fireBullet() {
+        if (!ship || fireTimer > 0) return;
+        var b = new Bullet();
+        b.spawnPlayerBullet(ship.x, ship.y);
+        bullets.push(b);
+        fireTimer = 0.12;
+        sfxShoot();
+      }
+
+      function spawnEnemy() {
+        var enemy = new Enemy();
+        var difficulty = getLevelDifficulty();
+        enemy.spawn(score, difficulty.speedMultiplier);
+        enemies.push(enemy);
+      }
+
+      function enemyFire() {
+        if (!ship) return;
+        var active = [];
+        for (var i = 0; i < enemies.length; i++) {
+          if (enemies[i].active && enemies[i].y > 0.05) active.push(enemies[i]);
+        }
+        if (active.length === 0) return;
+        // Destroyers (type 2) that are holding position get 3x fire weight
+        var weighted = [];
+        for (var j = 0; j < active.length; j++) {
+          weighted.push(active[j]);
+          if (active[j].type === 2 && active[j].y > 0.2) {
+            weighted.push(active[j]);
+            weighted.push(active[j]);
+          }
+        }
+        var shooter = weighted[Math.floor(Math.random() * weighted.length)];
+        var b = new Bullet();
+        b.spawnEnemyBullet(shooter.x, shooter.y, ship.x, ship.y, score);
+        bullets.push(b);
+      }
+
+      function checkCollisions() {
+        if (!ship) return;
+        var hitR = 0.035;
+        var hitR2 = hitR * hitR;
+
+        // Player bullets vs enemies
+        for (var bi = 0; bi < bullets.length; bi++) {
+          var b = bullets[bi];
+          if (!b.active || b.isEnemyBullet) continue;
+
+          for (var ei = 0; ei < enemies.length; ei++) {
+            var e = enemies[ei];
+            if (!e.active) continue;
+
+            var dx = b.x - e.x;
+            var dy = b.y - e.y;
+            if (dx * dx + dy * dy < hitR2) {
+              b.active = false;
+              e.health--;
+              sfxHit();
+              if (e.health <= 0) {
+                e.active = false;
+                score += 100;
+                var newLevel = getLevel();
+                if (newLevel > level) {
+                  level = newLevel;
+                  levelUpFlashTimer = 2.0;
+                  levelUpDisplayLevel = newLevel;
+                  sfxLevelUp();
+                }
+                levelVal.textContent = newLevel;
+                scoreVal.textContent = score;
+                sfxDestroy();
+              }
+              break;
+            }
+          }
+        }
+
+        // Enemy bullets vs player
+        for (var bi2 = 0; bi2 < bullets.length; bi2++) {
+          var eb = bullets[bi2];
+          if (!eb.active || !eb.isEnemyBullet) continue;
+
+          var dx2 = eb.x - ship.x;
+          var dy2 = eb.y - ship.y;
+          if (dx2 * dx2 + dy2 * dy2 < hitR2) {
+            eb.active = false;
+            playerHit();
+            return;
+          }
+        }
+
+        // Enemies vs player body
+        var bodyR2 = 0.04 * 0.04;
+        for (var ei2 = 0; ei2 < enemies.length; ei2++) {
+          var en = enemies[ei2];
+          if (!en.active) continue;
+          var dx3 = en.x - ship.x;
+          var dy3 = en.y - ship.y;
+          if (dx3 * dx3 + dy3 * dy3 < bodyR2) {
+            en.active = false;
+            playerHit();
+            return;
+          }
+        }
+      }
+
+      function playerHit() {
+        lives--;
+        livesVal.textContent = lives;
+        ship = null;
+        sfxPlayerHit();
+
+        if (lives <= 0) {
+          isGameOver = true;
+          gameRunning = false;
+          finalScoreEl.textContent = score;
+          document.getElementById('final-level').textContent = getLevel();
+          gameOverScreen.classList.remove('hidden');
+          hud.classList.add('hidden');
+          stopAmbient();
+          sfxGameOver();
+        } else {
+          respawnTimer = 1.5;
+        }
+      }
+
+      function drawRespawnEffect(w, h) {
+        var t = Date.now() / 300;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1;
+        for (var i = 0; i < 8; i++) {
+          var angle = t + i * Math.PI / 4;
+          var r = (Date.now() / 10 % 40) + 5;
+          var centerX = w / 2;
+          var centerY = h * 0.8;
+          ctx.beginPath();
+          ctx.moveTo(
+            centerX + Math.cos(angle) * r,
+            centerY + Math.sin(angle) * r
+          );
+          ctx.lineTo(
+            centerX + Math.cos(angle) * (r + 12),
+            centerY + Math.sin(angle) * (r + 12)
+          );
+          ctx.stroke();
+        }
+      }
+
+      // --- Game loop ---
+      function gameLoop(timestamp) {
+        var dt = (timestamp - lastTime) / 1000;
+        if (dt > 0.1) dt = 0.016;
+        lastTime = timestamp;
+
+        updateKeyboardInput();
+
+        if (gameRunning) {
+          // Cooldowns
+          if (fireTimer > 0) fireTimer -= dt;
+
+          // Auto-fire
+          if (autoFireCountdown > 0 && input.touchActive) {
+            autoFireCountdown -= dt;
+            if (autoFireCountdown <= 0) {
+              fireBullet();
+              autoFireCountdown = 0.15;
+            }
+          }
+
+          // Enemy spawning
+          spawnTimer += dt * 1000;
+          var baseDifficulty = getLevelDifficulty();
+          var interval = computeSpawnInterval(score) / baseDifficulty.spawnMultiplier;
+          if (spawnTimer >= interval) {
+            spawnEnemy();
+            spawnTimer = 0;
+          }
+
+          // Enemy fire — starts slow, ramps with level
+          enemyFireTimer += dt * 1000;
+          var lvDiff = getLevelDifficulty();
+          var enemyFireInterval = Math.max(1200, 3500 - (getLevel() - 1) * 300);
+          if (enemyFireTimer >= enemyFireInterval) {
+            enemyFire();
+            enemyFireTimer = 0;
+          }
+
+          // Respawn
+          if (!ship && !isGameOver) {
+            respawnTimer -= dt;
+            if (respawnTimer <= 0) {
+              ship = new Ship(0.5);
+            }
+          }
+
+          // Update ship
+          if (ship) {
+            ship.update(dt, input);
+          }
+
+          // Update enemies (reverse iterate for safe splice)
+          var px = ship ? ship.x : 0.5;
+          for (var i = enemies.length - 1; i >= 0; i--) {
+            enemies[i].update(dt, px);
+            if (!enemies[i].active) enemies.splice(i, 1);
+          }
+
+          // Update bullets
+          for (var j = bullets.length - 1; j >= 0; j--) {
+            bullets[j].update(dt);
+            if (!bullets[j].active) bullets.splice(j, 1);
+          }
+
+          // Collisions
+          checkCollisions();
+
+          // Level-up flash countdown
+          if (levelUpFlashTimer > 0) levelUpFlashTimer -= dt;
+        }
+
+        // --- Render ---
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        starfield.update(dt);
+        starfield.render(ctx, canvas.width, canvas.height);
+
+        if (gameRunning || isGameOver) {
+          for (var ei = 0; ei < enemies.length; ei++) {
+            enemies[ei].render(ctx, canvas.width, canvas.height);
+          }
+
+          for (var bi = 0; bi < bullets.length; bi++) {
+            bullets[bi].render(ctx, canvas.width, canvas.height);
+          }
+
+          if (ship) {
+            ship.render(ctx, canvas.width, canvas.height);
+          } else if (!isGameOver) {
+            drawRespawnEffect(canvas.width, canvas.height);
+          }
+
+          // Level-up banner
+          if (levelUpFlashTimer > 0) {
+            var alpha = Math.min(1, levelUpFlashTimer / 0.3);
+            var bannerY = canvas.height * 0.35;
+            var text = 'LEVEL ' + levelUpDisplayLevel;
+            ctx.strokeStyle = 'rgba(0,255,255,' + alpha + ')';
+            ctx.lineWidth = 1;
+            // Draw text using lines (monospace-style)
+            ctx.font = '32px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = 'rgba(0,255,255,' + alpha + ')';
+            ctx.fillText(text, canvas.width / 2, bannerY);
+            // Horizontal accent lines
+            var tw = ctx.measureText(text).width / 2 + 20;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2 - tw, bannerY + 10);
+            ctx.lineTo(canvas.width / 2 + tw, bannerY + 10);
+            ctx.stroke();
+          }
+        }
+
+        requestAnimationFrame(gameLoop);
+      }
+
+      // --- Start / Restart ---
+      function startGame() {
+        startScreen.classList.add('hidden');
+        gameOverScreen.classList.add('hidden');
+        hud.classList.remove('hidden');
+
+        ship = new Ship(0.5);
+        bullets = [];
+        enemies = [];
+        score = 0;
+        level = 1;
+        lives = 3;
+        gameRunning = true;
+        isGameOver = false;
+        spawnTimer = 0;
+        fireTimer = 0;
+        autoFireCountdown = 0;
+        enemyFireTimer = 0;
+        respawnTimer = 0;
+        levelUpFlashTimer = 0;
+        levelUpDisplayLevel = 0;
+
+        levelVal.textContent = '1';
+        scoreVal.textContent = '0';
+        livesVal.textContent = '3';
+
+        initAudio();
+        startAmbient();
+      }
+
+      function restartGame() {
+        gameOverScreen.classList.add('hidden');
+        startGame();
+      }
+
+      document.getElementById('start-btn').addEventListener('click', startGame);
+      document.getElementById('restart-btn').addEventListener('click', restartGame);
+
+      // Start render loop for menu starfield
+      lastTime = performance.now();
+      requestAnimationFrame(gameLoop);
+    })();
+  </script>
+</body>
+</html>
