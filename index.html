@@ -1,59 +1,759 @@
 <!DOCTYPE html>
 <html lang="en">
-  <canvas id="bg-canvas"></canvas>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width">
-    <title>Payman Abbasian's blog - Germany based software developer
-    </title>
-    <link rel="alternate" href="https://www.pabbasian.com//feed.xml" type="application/rss+xml" title="some description">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Allerta:400,700,400italic,700italic">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/theme.css">
-  </head>
-  <body>
-    <header class="header">
-      <div class="content-wrap">
-        <nav>
-          <label for="menu-toggle">Menu &#x25BE;</label>
-          <input type="checkbox" id="menu-toggle">
-          <ul id="menu"><a href="/contact.html">Contact</a><a href="/cv.html">CV</a>
-          </ul>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payman Abbasian - Industrial IoT & SCADA Architect | Energy Automation Expert</title>
+    <meta name="description" content="Payman Abbasian - Technical Product Developer specializing in Industrial IoT, SCADA systems, Virtual Power Plants (VPP), and energy automation at E.ON Germany. Expert in Node-RED, OPC-UA, digital twins, and modern energy management systems.">
+    <meta name="keywords" content="Industrial IoT, IIoT, SCADA, Virtual Power Plant, VPP, Energy Automation, Battery Energy Storage, BESS, OPC-UA, Node-RED, Digital Twins, Edge Computing, Modbus, IEC104, Profibus, Energy Management Systems, Grid Balancing, Predictive Maintenance">
+    <meta name="author" content="Payman Abbasian">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pabbasian.com/">
+    <meta property="og:title" content="Payman Abbasian - Industrial IoT & SCADA Architect">
+    <meta property="og:description" content="Technical Product Developer specializing in Industrial IoT, SCADA systems, Virtual Power Plants, and energy automation at E.ON Germany">
+    <meta property="og:site_name" content="Payman Abbasian">
+    <meta property="og:image" content="https://pabbasian.com/favicon.ico">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Payman Abbasian - Industrial IoT & SCADA Architect">
+    <meta property="twitter:description" content="Technical Product Developer specializing in Industrial IoT, SCADA systems, Virtual Power Plants, and energy automation">
+    <meta property="twitter:image" content="https://pabbasian.com/favicon.ico">
+    <meta property="twitter:site" content="@pabbasian">
+    
+    <!-- Enhanced SEO Meta Tags for German Market -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="theme-color" content="#0a192f">
+    <meta name="msapplication-TileColor" content="#0a192f">
+    <meta name="geo.region" content="DE-NW">
+    <meta name="geo.placename" content="Essen">
+    <meta name="geo.position" content="51.4556432;7.0115552">
+    <meta name="ICBM" content="51.4556432, 7.0115552">
+    <meta name="language" content="en, de">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta name="revisit-after" content="7 days">
+    <meta name="expires" content="never">
+    
+    <!-- Industry-Specific Meta Tags -->
+    <meta name="industry" content="Energy Technology">
+    <meta name="category" content="Industrial Automation, Energy Management, IoT Solutions">
+    <meta name="coverage" content="Germany, Europe">
+    <meta name="target" content="Energy Professionals, Industrial Engineers, IoT Developers">
+    
+    <!-- Search Console and Analytics Verification (placeholders) -->
+    <!-- <meta name="google-site-verification" content="your_google_verification_code"> -->
+    <!-- <meta name="msvalidate.01" content="your_bing_verification_code"> -->
+    <!-- <meta name="yandex-verification" content="your_yandex_verification_code"> -->
+    
+    <!-- Performance Optimization: Resource hints and preloading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <!-- Font preloading for critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=SF+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=SF+Mono:wght@400;500&display=swap"></noscript>
+    
+    <!-- Critical CSS will be inlined here -->
+    <style>
+        /* Critical above-the-fold styles */
+        body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background-color:#0a192f;color:#8892b0;line-height:1.3;overflow-x:hidden}
+        .hero{min-height:100vh;padding:0 150px;display:flex;justify-content:center;align-items:center;flex-direction:column}
+        .hero-title{color:#ccd6f6;font-weight:600;font-size:clamp(40px,8vw,80px);line-height:1.1;margin:0}
+        .hero-subtitle{color:#64ffda;font-family:"SF Mono",Monaco,"Inconsolata","Roboto Mono",monospace;font-size:clamp(14px,5vw,16px);font-weight:400;margin:0 0 30px 4px}
+        .main-nav{position:fixed;top:0;width:100%;z-index:1000;padding:0 50px;background-color:rgba(10,25,47,0.85);backdrop-filter:blur(10px)}
+        @media(max-width:768px){.hero{padding:0 25px}.main-nav{padding:0 25px}}
+    </style>
+    
+    <link rel="alternate" href="https://pabbasian.com/feed.xml" type="application/rss+xml" title="Payman Abbasian">
+    <link rel="canonical" href="https://pabbasian.com/">
+    <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all';this.onload=null;">
+    <noscript><link rel="stylesheet" href="css/main.css"></noscript>
+    
+    <!-- Enhanced Structured Data for Portfolio Website -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://pabbasian.com/#person",
+          "name": "Payman Abbasian",
+          "givenName": "Payman",
+          "familyName": "Abbasian",
+          "jobTitle": "Technical Product Developer",
+          "description": "Industrial IoT & SCADA Architect specializing in energy automation and Virtual Power Plants. Leading digital transformation of distributed energy resources at E.ON Germany.",
+          "url": "https://pabbasian.com",
+          "mainEntityOfPage": "https://pabbasian.com",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://pabbasian.com/favicon.ico",
+            "width": 512,
+            "height": 512
+          },
+          "sameAs": [
+            "https://pabbasian.com/cv.html",
+            "https://linkedin.com/in/paaymanabbasian"
+          ],
+          "worksFor": {
+            "@type": "Organization",
+            "@id": "https://pabbasian.com/#employer",
+            "name": "E.ON SE",
+            "url": "https://eon.com",
+            "description": "One of Europe's largest energy corporations",
+            "foundingDate": "2000",
+            "industry": "Energy",
+            "location": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Essen",
+                "addressCountry": "Germany"
+              }
+            }
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Essen",
+            "addressRegion": "North Rhine-Westphalia",
+            "addressCountry": "Germany"
+          },
+          "email": "info@pabbasian.com",
+          "alumniOf": [
+            {
+              "@type": "Organization",
+              "name": "Technical University",
+              "description": "Computer Science and Engineering"
+            }
+          ],
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Technical Product Developer",
+            "occupationLocation": {
+              "@type": "City",
+              "name": "Essen"
+            },
+            "skills": [
+              "Industrial IoT Architecture",
+              "SCADA Systems Design",
+              "Virtual Power Plant Development",
+              "Energy Automation",
+              "Microservices Architecture",
+              "Real-time Data Processing"
+            ]
+          },
+          "knowsAbout": [
+            {
+              "@type": "Thing",
+              "name": "Industrial IoT",
+              "description": "Internet of Things solutions for industrial automation and energy management"
+            },
+            {
+              "@type": "Thing", 
+              "name": "SCADA Systems",
+              "description": "Supervisory Control and Data Acquisition systems for critical infrastructure"
+            },
+            {
+              "@type": "Thing",
+              "name": "Virtual Power Plants",
+              "description": "Distributed energy resource aggregation and optimization platforms"
+            },
+            {
+              "@type": "Thing",
+              "name": "Battery Energy Storage Systems",
+              "description": "Grid-scale battery systems for energy storage and grid balancing"
+            },
+            {
+              "@type": "Thing",
+              "name": "OPC-UA Protocol",
+              "description": "Industrial communication protocol for secure and reliable data exchange"
+            },
+            {
+              "@type": "Thing",
+              "name": "Node-RED",
+              "description": "Flow-based development tool for visual programming of IoT applications"
+            },
+            {
+              "@type": "Thing",
+              "name": "Kubernetes",
+              "description": "Container orchestration platform for scalable application deployment"
+            },
+            {
+              "@type": "Thing",
+              "name": "Apache Kafka",
+              "description": "Distributed streaming platform for high-throughput data processing"
+            }
+          ],
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Microsoft Certified Solutions Developer (MCSD)",
+              "credentialCategory": "Professional Certificate",
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "Microsoft"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://pabbasian.com/#website",
+          "url": "https://pabbasian.com",
+          "name": "Payman Abbasian - Industrial IoT & SCADA Architect",
+          "description": "Professional portfolio showcasing expertise in Industrial IoT, SCADA systems, Virtual Power Plants, and energy automation solutions.",
+          "publisher": {
+            "@id": "https://pabbasian.com/#person"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://pabbasian.com/?s={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://pabbasian.com/#service",
+          "name": "Industrial IoT & Energy Automation Consulting",
+          "description": "Expert consulting services for Industrial IoT implementation, SCADA system design, and Virtual Power Plant development",
+          "provider": {
+            "@id": "https://pabbasian.com/#person"
+          },
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "Germany"
+            },
+            {
+              "@type": "Country", 
+              "name": "United Kingdom"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "European Union"
+            }
+          ],
+          "serviceType": [
+            "Industrial IoT Architecture",
+            "SCADA System Design",
+            "Virtual Power Plant Development",
+            "Energy Management System Integration",
+            "Predictive Maintenance Solutions",
+            "Digital Twin Implementation"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Breadcrumb Navigation Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://pabbasian.com/"
+        },
+        {
+          "@type": "ListItem", 
+          "position": 2,
+          "name": "About",
+          "item": "https://pabbasian.com/#about"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3, 
+          "name": "Experience",
+          "item": "https://pabbasian.com/#experience"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Projects",
+          "item": "https://pabbasian.com/#projects"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Contact", 
+          "item": "https://pabbasian.com/#contact"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- FAQ Schema for Technical Expertise -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Industrial IoT and how does it apply to energy systems?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Industrial IoT (IIoT) refers to connected sensors, instruments, and devices networked together in industrial applications. In energy systems, IIoT enables real-time monitoring and control of power generation, distribution, and consumption assets. This includes smart grid infrastructure, predictive maintenance of power equipment, and optimization of distributed energy resources like solar panels and battery storage systems."
+          }
+        },
+        {
+          "@type": "Question", 
+          "name": "What are Virtual Power Plants and how do they work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Virtual Power Plants (VPPs) are cloud-based distributed power plant systems that aggregate the capacity of many distributed energy resources like solar panels, wind farms, and battery storage systems. They use advanced software and IoT technologies to coordinate these resources, allowing them to operate as a single power plant. VPPs can provide grid services like frequency regulation, peak shaving, and load balancing while maximizing renewable energy integration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What SCADA protocols are commonly used in energy automation?",
+          "acceptedAnswer": {
+            "@type": "Answer", 
+            "text": "Common SCADA protocols in energy automation include: Modbus (TCP/RTU) for industrial device communication, IEC 61850 for power system automation, IEC 104 for wide-area monitoring, DNP3 for utility communications, OPC-UA for industrial internet connectivity, and Profibus for fieldbus communication. Each protocol serves specific purposes in the energy automation ecosystem, from local device control to wide-area grid management."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do Battery Energy Storage Systems integrate with power grids?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Battery Energy Storage Systems (BESS) integrate with power grids through sophisticated power conditioning systems and grid-tie inverters. They provide multiple grid services including frequency regulation (responding within seconds to grid frequency changes), voltage support, peak shaving (reducing demand during high-cost periods), and renewable energy firming (smoothing output from intermittent sources). Modern BESS use advanced battery management systems and real-time control algorithms to optimize performance while ensuring safety and grid stability."
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+    
+    <!-- Navigation -->
+            <nav class="main-nav" id="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="/" class="brand-link">P</a>
+                </div>
+                
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="hamburger-label">
+                    <div class="hamburger"></div>
+                </label>
+                
+                <ol class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="Payman_Abbasian_CV.pdf" target="_blank" class="nav-resume">Resume</a></li>
+                </ol>
+            </div>
         </nav>
-        <div class="logo">
-          <h2><a href="https://www.pabbasian.com/">Payman Abbasian's blog</a></h2>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 style="font-family: var(--font-mono); font-size: clamp(14px, 5vw, 16px); font-weight: 400; margin: 0 0 30px 4px; color: var(--primary-color);">Hi, my name is</h1>
+            <h2 class="hero-title">Payman Abbasian.</h2>
+            <h3 class="hero-subtitle">I architect intelligent energy systems.</h3>
+            <div class="hero-description">
+                <p>I'm a Technical Product Developer specializing in <a href="#about" class="inline-link">Industrial IoT and SCADA systems</a> for the energy sector. Currently, I'm transforming how distributed energy resources connect and communicate at <a href="https://www.eon.com" target="_blank" class="inline-link">E.ON</a>, building next-generation Virtual Power Plants and smart grid infrastructure.</p>
+            </div>
+            <div class="hero-cta">
+                <a href="mailto:info@pabbasian.com" class="btn">Get In Touch</a>
+            </div>
         </div>
-        <section class="about"><h1 id="who">WHO</h1>
-<p>I’m Payman Abbasian a visual developer, programmer and interaction designer. Using programming as my only tool I try to develop technology to create an alternative way of performing visuals and sounds.</p>
-<h1 id="what">WHAT</h1>
-<p>What exactly I am doing now is making websites or web applications and besides I am trying to have some projects on my own as a free time hobby.</p>
-<h1 id="where">WHERE</h1>
-<p>I am currently based in Germany and I am always open to new projects if I find it interesting. just drop me a line or give me a call.</p>
-
-        </section>
-        <article class="article intro">
-          <header>
-            <p class="date"><span>04. January 2017</span></p>
-            <h2><a href="/articles/hello-world/">Hello there</a></h2>
-          </header>
-          <section class="content"><p>It’s my first blog&nbsp;post.</p>
-
-            <p class="more"><a href="/articles/hello-world/">more</a></p>
-          </section>
-        </article>
-      </div>
     </header>
-    <footer>
-      <div class="content-wrap">
-        <div class="nav"><a href="/archive.html">&laquo; Archives</a>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="big-heading">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div>
+                        <p>Hello! My name is Payman and I'm a Technical Product Developer specializing in Industrial IoT and SCADA systems for the energy sector. My journey in software development started back in 2005 when I began developing web applications professionally — turns out building solutions for industrial systems taught me a lot about both software architecture and the energy sector!</p>
+                        
+                        <p>Fast-forward to today, and I've had the privilege of working at various companies across different sectors for nearly two decades. I'm now at <a href="https://www.eon.com/" target="_blank" class="inline-link">E.ON</a>, one of Europe's largest energy corporations, where my expertise in system design, programming, and object-oriented software design comes together with my deep understanding of energy systems.</p>
+                        
+                        <p>Currently at E.ON, I work as a Technical Product Developer focusing on modernizing energy systems and developing solutions for distributed energy resources. I previously held a Technical Operations Manager role where I was responsible for 24/7 VPP operations and led implementation of new projects across UK and Germany. My experience spans from low-level system architecture to complex solutions on different platforms.</p>
+                        
+                        <p>My specialties include system design, programming, and object-oriented software design, with strong experience in concurrency, parallelism, and event-driven architecture. I have ownership experience of major features and components from inception to deployment.</p>
+                        
+                        <p><strong>Key Technical Accomplishments:</strong></p>
+                        <ul class="accomplishments-list">
+                            <li>🔄 Led enterprise-wide migration from legacy Eclipse SCADA systems to modern Node-RED architecture</li>
+                            <li>🏗️ Architected and implemented automated deployment pipelines using Kubernetes for energy asset management</li>
+                            <li>🔌 Developed integration solutions for multiple industrial protocols (Modbus, IEC104, Profibus)</li>
+                            <li>⚡ Built real-time data delivery systems connecting power plants to transmission operators</li>
+                            <li>🎛️ Designed steering box solutions for battery assets in Virtual Power Plant systems</li>
+                            <li>📊 Implemented 24/7 operational monitoring systems for distributed energy resources across UK and Germany</li>
+                        </ul>
+                        
+                        <p><strong>Domain Expertise - Energy Sector:</strong></p>
+                        <div class="expertise-section">
+                            <div class="expertise-column">
+                                <h5>🔋 Battery Energy Storage Systems</h5>
+                                <ul>
+                                    <li>Asset integration and management</li>
+                                    <li>Steering box development</li>
+                                    <li>Real-time monitoring systems</li>
+                                </ul>
+                            </div>
+                            <div class="expertise-column">
+                                <h5>🏭 Virtual Power Plants (VPP)</h5>
+                                <ul>
+                                    <li>24/7 operations management</li>
+                                    <li>Asset onboarding automation</li>
+                                    <li>Distributed resource coordination</li>
+                                </ul>
+                            </div>
+                            <div class="expertise-column">
+                                <h5>⚡ Industrial Protocols & Integration</h5>
+                                <ul>
+                                    <li>SCADA system development</li>
+                                    <li>PLC communication (Modbus, IEC104)</li>
+                                    <li>Real-time data systems</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p>Here are the core technologies organized by domain:</p>
+                        
+                        <ul class="skills-list">
+                            <li>Programming Languages: Java, C#, JavaScript, Node.js, Go (Golang)</li>
+                            <li>Industrial Communication: Modbus TCP/RTU, IEC104, Profibus, OPC-UA</li>
+                            <li>SCADA & Automation: Eclipse SCADA, Node-RED, Industrial IoT</li>
+                            <li>Energy Systems: Virtual Power Plants (VPP), Battery Management, Grid Integration</li>
+                            <li>Databases: PostgreSQL, Oracle, MySQL, SQL Server, Redis, Elasticsearch</li>
+                            <li>APIs & Integration: REST/SOAP APIs, Message Queuing, Event-driven Architecture</li>
+                            <li>Cloud & DevOps: Kubernetes, Docker, Azure, AWS, CI/CD Pipelines</li>
+                            <li>Infrastructure: Linux/Windows Administration, Nginx, Apache, IIS, HAProxy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <section class="copy">
-          <p>&copy; 2017 pabbasian.com</p>
-        </section>
-      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="big-heading">Where I've Worked</h2>
+            <div class="jobs">
+                <div class="jobs-tabs">
+                    <button class="jobs-tab active" data-id="tab-0">
+                        <span>E.ON - Current</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-1">
+                        <span>E.ON</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-2">
+                        <span>IBH Systems</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-3">
+                        <span>Violer</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-4">
+                        <span>Jetsoft</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-5">
+                        <span>Getupdated</span>
+                    </button>
+                </div>
+                
+                <div class="jobs-content">
+                    <div class="jobs-tabpanel active" id="tab-0">
+                        <h3>Technical Product Developer <span class="company">@ E.ON</span></h3>
+                        <p class="jobs-range">2021 - Present</p>
+                        <div>
+                            <ul>
+                                <li>Migrated product development from Eclipse SCADA to Node-Red</li>
+                                <li>Onboarded new asset types to VPP and developed a steering box for battery assets</li>
+                                <li>Automated onboarding process with Kubernetes</li>
+                                <li>Enhanced system scalability and reliability through modern architecture patterns</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-1">
+                        <h3>Technical Operations Manager <span class="company">@ E.ON</span></h3>
+                        <p class="jobs-range">October 2019 - January 2021</p>
+                        <div>
+                            <ul>
+                                <li>Technical expert for various flex products and assets</li>
+                                <li>Product ownership and management of UK balancing products</li>
+                                <li>Stakeholder management (internally and externally)</li>
+                                <li>Led implementation of new projects both in UK and Germany</li>
+                                <li>Responsible for 24/7 operation of Virtual Power Plant (VPP)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-2">
+                        <h3>Software Developer <span class="company">@ IBH Systems (E.ON)</span></h3>
+                        <p class="jobs-range">February 2017 - June 2018</p>
+                        <div>
+                            <ul>
+                                <li>Java development with Eclipse SCADA framework</li>
+                                <li>IoT system integration and development</li>
+                                <li>Industrial protocol implementation (Modbus, IEC104)</li>
+                                <li>Developed real-time data delivery from power plants</li>
+                                <li>Connected new customers with various PLCs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-3">
+                        <h3>CEO <span class="company">@ Violer</span></h3>
+                        <p class="jobs-range">September 2015 - September 2016</p>
+                        <div>
+                            <ul>
+                                <li>Founded and led software development company</li>
+                                <li>Developed software applications using Node.js and Meteor.js</li>
+                                <li>Integrated databases (MongoDB) with software applications</li>
+                                <li>Managed full software development lifecycle</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-4">
+                        <h3>System Developer <span class="company">@ JetSoft AB</span></h3>
+                        <p class="jobs-range">June 2015 - August 2015</p>
+                        <div>
+                            <ul>
+                                <li>Built an interactive dashboard for an ERP system using Angular on the front-end and NancyFX on the back end</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-5">
+                        <h3>System Developer <span class="company">@ Getupdated Internet Marketing</span></h3>
+                        <p class="jobs-range">June 2012 - May 2015</p>
+                        <div>
+                            <ul>
+                                <li>Developed a modular report generation/scheduling system using C# and .NET</li>
+                                <li>Designed and implemented automated reporting workflows</li>
+                                <li>Full-stack web development with focus on back-end systems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="big-heading">Education & Certifications</h2>
+            <div class="education-content">
+                <div class="education-item">
+                    <h3><span class="company">@ Islamic Azad University</span></h3>
+                    <p class="education-field">Environmental Health</p>
+                </div>
+                
+                <div class="certification-item">
+                    <h3>Microsoft Certified Solutions Developer (MCSD)</h3>
+                    <p class="certification-issuer">Microsoft • March 2004</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Key Projects & Achievements</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>SCADA to Node-RED Migration</h3>
+                    <p class="project-role">Technical Product Developer | E.ON Germany</p>
+                    <p class="project-description">
+                        <strong>Challenge:</strong> Legacy Eclipse SCADA systems were limiting development speed and system modernization efforts.<br>
+                        <strong>Solution:</strong> Led the complete migration of product development from Eclipse SCADA to Node-RED, implementing modern development workflows and improved system architecture.<br>
+                        <strong>Impact:</strong> Modernized the entire development pipeline, improved system efficiency, and enabled faster deployment of new energy management features.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Eclipse SCADA</span>
+                        <span class="project-tag">Node-RED</span>
+                        <span class="project-tag">System Migration</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>VPP Battery Asset Management</h3>
+                    <p class="project-role">Technical Product Developer | E.ON Germany</p>
+                    <p class="project-description">
+                        <strong>Challenge:</strong> Need to integrate new battery asset types into existing Virtual Power Plant infrastructure.<br>
+                        <strong>Solution:</strong> Developed custom steering box solutions for battery assets and created automated onboarding processes for new asset types.<br>
+                        <strong>Impact:</strong> Enabled seamless integration of diverse battery systems into VPP operations, expanding the platform's capabilities.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Virtual Power Plant</span>
+                        <span class="project-tag">Battery Management</span>
+                        <span class="project-tag">Energy Systems</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Kubernetes Automation Platform</h3>
+                    <p class="project-role">Technical Product Developer | E.ON Germany</p>
+                    <p class="project-description">
+                        <strong>Challenge:</strong> Manual deployment and management processes were creating bottlenecks in energy asset onboarding.<br>
+                        <strong>Solution:</strong> Implemented comprehensive automation using Kubernetes, creating streamlined deployment pipelines for energy asset management.<br>
+                        <strong>Impact:</strong> Significantly reduced manual effort, improved deployment reliability, and accelerated time-to-market for new energy assets.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Kubernetes</span>
+                        <span class="project-tag">Automation</span>
+                        <span class="project-tag">DevOps</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Real-time Power Plant Data Systems</h3>
+                    <p class="project-role">SCADA Developer | IBH Systems (E.ON)</p>
+                    <p class="project-description">
+                        <strong>Challenge:</strong> Need for reliable, real-time data delivery from power plants to transmission system operators.<br>
+                        <strong>Solution:</strong> Developed robust real-time data systems connecting power plants through various PLCs using industrial protocols (Modbus, IEC104, Profibus).<br>
+                        <strong>Impact:</strong> Established critical communication links enabling reliable power grid operations and customer connectivity.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">SCADA</span>
+                        <span class="project-tag">Real-time Systems</span>
+                        <span class="project-tag">PLC Integration</span>
+                        <span class="project-tag">Modbus</span>
+                        <span class="project-tag">IEC104</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="big-heading">What's Next?</h2>
+            <h3 style="font-size: clamp(40px, 8vw, 60px); margin: 0 0 20px; font-weight: 600; color: var(--text-primary);">Get In Touch</h3>
+            <p style="max-width: 600px; margin: 0 0 50px; font-size: 20px;">Although I'm not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="mailto:info@pabbasian.com" class="btn">Drop me a line</a>
+                <a href="Payman_Abbasian_CV.pdf" target="_blank" class="btn">Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" style="text-align: center; padding: 15px; color: var(--text-secondary); font-family: var(--font-mono); font-size: 14px;">
+        <p>Built by Payman Abbasian</p>
     </footer>
-    <script src="js/bg-canvas.js"></script>
-    <!--script( src='js/ga.js')-->
-  </body>
+
+    <script>
+        // Experience tabs functionality
+        const tabs = document.querySelectorAll('.jobs-tab');
+        const panels = document.querySelectorAll('.jobs-tabpanel');
+        
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and panels
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding panel
+                tab.classList.add('active');
+                document.getElementById(tab.getAttribute('data-id')).classList.add('active');
+            });
+        });
+
+        // Breadcrumb visibility on scroll
+        let lastScrollTop = 0;
+        const breadcrumbNav = document.querySelector('.breadcrumb-nav');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 200 && scrollTop > lastScrollTop) {
+                // Scrolling down - hide breadcrumb
+                breadcrumbNav.classList.add('hidden');
+            } else if (scrollTop <= 200 || scrollTop < lastScrollTop) {
+                // Scrolling up or near top - show breadcrumb
+                breadcrumbNav.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        
+        if (menuToggle) {
+            // Navigation handles itself via CSS :checked pseudo-class
+            // No JavaScript needed for menu toggle functionality
+        }
+
+        // Performance monitoring and Core Web Vitals
+        if ('web-vitals' in window) {
+            import('https://unpkg.com/web-vitals?module').then(({getCLS, getFID, getFCP, getLCP, getTTFB}) => {
+                getCLS(console.log);
+                getFID(console.log);
+                getFCP(console.log);
+                getLCP(console.log);
+                getTTFB(console.log);
+            });
+        }
+
+        // Intersection Observer for lazy loading and animations
+        if ('IntersectionObserver' in window) {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -100px 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe sections for animations
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        }
+    </script>
+</body>
 </html>

@@ -1,61 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
-  <canvas id="bg-canvas"></canvas>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width">
-    <title>Resume / CV - Payman Abbasian's blog
-    </title>
-    <link rel="alternate" href="https://www.pabbasian.com//feed.xml" type="application/rss+xml" title="some description">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Allerta:400,700,400italic,700italic">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/theme.css">
-  </head>
-  <body class="article-detail">
-    <header class="header">
-      <div class="content-wrap">
-        <h1>Resume / CV</h1>
-        <p class="author">Written by <a href="/"><span class="author">Payman Abbasian</span></a></p>
-        <article class="article">
-          <section class="content"><h2 id="summary">Summary</h2>
-<p>I am a full stack app/web developer. I am working in the technology field since 2005 with my primary focus on Asp.net stack, however this changed over the past few years with the rise of javascript frameworks, node and other new kids in the block. I find myself spending more time nowadays on a terminal window than visual studio and when it comes to databases I am moving my stuff to&nbsp;postgresql.</p>
-<ul>
-<li><p>N-tier Applications and Microsoft <span class="caps">DNA</span> Structure (Web-based, Intranet, Client/Server,&nbsp;Web-Service)</p>
-</li>
-<li><p>Nine years of freelance web development experience. Developed dozens of dynamic web sites from&nbsp;scratch.</p>
-</li>
-<li><p>Three years of advanced JavaScript experience. Used JavaScript libraries like jQuery and yui to create efficient and attractive web&nbsp;frontends.</p>
-</li>
-</ul>
-<h2 id="experience">Experience</h2>
-<ul>
-<li>Software Developer at “e.on (<span class="caps">IBH</span>-Systems)” from June 2017 to August&nbsp;2015</li>
-<li>Software Developer at “Violer” from June 2016 -&nbsp;2017</li>
-<li>System Developer at “JetSoft <span class="caps">AB</span>” from June 2015 to August&nbsp;2015</li>
-<li>System Developer at “Getupdated” Internet Marketing from June 2012 to May&nbsp;2015</li>
-<li>Software Developer at “Chargoon”from May 2009 to May&nbsp;2010</li>
-</ul>
-<h2 id="certifications">Certifications</h2>
-<p>Microsoft Certified Solutions Developer (<span class="caps">MCSD</span>)
-March&nbsp;2004</p>
-<h2 id="skills">Skills</h2>
-<p>C#, <span class="caps">ASP</span>.NET, node, JavaScript, HTML5, XMLWeb Services, Microsoft SQL Server, Visual Basic, Web Development, Java, PHP,&nbsp;SCADA</p>
-<p><a href="https://www.linkedin.com/in/paymanabbasian">Linkedin</a></p>
-<p><a href="/cv.pdf"><span class="caps">DOWNLOAD</span>&nbsp;CV</a></p>
-</section>
-        </article>
-      </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Payman Abbasian | Industrial IoT & SCADA Architect</title>
+    <meta name="description" content="Professional CV of Payman Abbasian - Industrial IoT & SCADA Architect specializing in energy automation, Virtual Power Plants, and energy management systems.">
+    <meta name="keywords" content="Industrial IoT, SCADA Systems, Energy Automation, Virtual Power Plants, E.ON, Node-RED, Eclipse SCADA, Solution Architect, Java Developer, Kubernetes, Energy Management, PLC Systems, Modbus, IEC104, Real-time Systems, Enterprise Software">
+    <meta name="author" content="Payman Abbasian">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pabbasian.com/cv.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://pabbasian.com/cv.html">
+    <meta property="og:title" content="Payman Abbasian - Industrial IoT & SCADA Architect | CV">
+    <meta property="og:description" content="Technical Product Developer at E.ON specializing in SCADA systems, Virtual Power Plants, and energy automation. 20+ years of full-stack development experience.">
+    <meta property="og:image" content="https://pabbasian.com/favicon.ico">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Payman Abbasian Portfolio">
+    <meta property="profile:first_name" content="Payman">
+    <meta property="profile:last_name" content="Abbasian">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:url" content="https://pabbasian.com/cv.html">
+    <meta property="twitter:title" content="Payman Abbasian - Industrial IoT & SCADA Architect | CV">
+    <meta property="twitter:description" content="Technical Product Developer at E.ON specializing in SCADA systems, Virtual Power Plants, and energy automation. 20+ years of full-stack development experience.">
+    <meta property="twitter:image" content="https://pabbasian.com/favicon.ico">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#0a192f">
+    <meta name="msapplication-TileColor" content="#0a192f">
+    <meta name="application-name" content="Payman Abbasian CV">
+    <meta name="apple-mobile-web-app-title" content="Payman Abbasian CV">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inter:400,500,600,700&family=SF+Mono:400,500">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/theme.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Payman Abbasian",
+      "jobTitle": "Technical Product Developer",
+      "description": "Industrial IoT & SCADA Architect specializing in energy automation and Virtual Power Plants",
+      "url": "https://pabbasian.com",
+      "sameAs": [
+        "https://pabbasian.com/cv.html",
+        "https://pabbasian.com/cv.pdf"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "E.ON",
+        "url": "https://eon.com"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Essen",
+        "addressRegion": "North Rhine-Westphalia",
+        "addressCountry": "Germany"
+      },
+      "email": "info@pabbasian.com",
+      "knowsAbout": [
+        "Industrial IoT",
+        "SCADA Systems",
+        "Virtual Power Plants",
+        "Energy Automation",
+        "Node-RED",
+        "Eclipse SCADA",
+        "Java Development",
+        "Kubernetes",
+        "PLC Systems",
+        "Modbus",
+        "IEC104",
+        "Real-time Systems"
+      ],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Technical Product Developer",
+        "occupationLocation": {
+          "@type": "City",
+          "name": "Essen, Germany"
+        },
+        "skills": "Industrial IoT, SCADA Systems, Energy Automation, Virtual Power Plants"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Islamic Azad University"
+      }
+    }
+    </script>
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <nav class="main-nav" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/" class="brand-link">P</a>
+            </div>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger-label">
+                <div class="hamburger"></div>
+            </label>
+            
+            <ol class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#experience">Experience</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/cv.html" class="active">CV</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="cv.pdf" target="_blank" class="nav-resume">Resume PDF</a></li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- CV Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 style="font-family: var(--font-mono); font-size: clamp(14px, 5vw, 16px); font-weight: 400; margin: 0 0 30px 4px; color: var(--primary-color);">Curriculum Vitae</h1>
+            <h2 class="hero-title">Payman Abbasian</h2>
+            <h3 class="hero-subtitle">Solution Architect | Energy Automation Expert</h3>
+            <div class="hero-description">
+                <p>📧 <a href="mailto:info@pabbasian.com" class="inline-link">info@pabbasian.com</a><br>
+                🌐 <a href="https://pabbasian.com" target="_blank" class="inline-link">pabbasian.com</a><br>
+                📍 Essen, North Rhine-Westphalia, Germany</p>
+            </div>
+            <div class="hero-cta">
+                <a href="cv.pdf" target="_blank" class="btn">Download PDF</a>
+            </div>
+        </div>
     </header>
-    <footer>
-      <div class="content-wrap">
-        <div class="nav"><a href="/">&laquo; Full blog</a></div>
-        <section class="copy">
-          <p>&copy; 2017 pabbasian.com</p>
-        </section>
-      </div>
+
+    <!-- Professional Summary Section -->
+    <section id="summary">
+        <div class="container">
+            <h2 class="big-heading">Professional Summary</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div>
+                        <p>Full-stack developer specializing in energy technology and industrial automation with nearly two decades of experience. Expert in system design, programming, and object-oriented software design with deep understanding of energy systems. Currently transforming distributed energy resources and Virtual Power Plant systems at E.ON, one of Europe's largest energy corporations.</p>
+                        
+                        <div style="margin: 40px 0;">
+                            <h4 style="color: var(--text-primary); font-size: 18px; margin-bottom: 20px;">Core Specialties:</h4>
+                            <ul class="skills-list" style="grid-template-columns: repeat(2, 1fr);">
+                                <li>System Design & Architecture</li>
+                                <li>Industrial IoT & SCADA Systems</li>
+                                <li>Virtual Power Plants (VPP) & Energy Management</li>
+                                <li>Concurrency, Parallelism & Event-Driven Architecture</li>
+                                <li>Full-Stack Development (2005-Present)</li>
+                                <li>Product Ownership & Stakeholder Management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="big-heading">Technical Skills</h2>
+            
+            <div class="skills-category">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px;">Programming Languages</h3>
+                <ul class="skills-list">
+                    <li><strong>Java</strong> - Enterprise applications, Eclipse SCADA</li>
+                    <li><strong>C#</strong> - .NET applications, enterprise systems</li>
+                    <li><strong>JavaScript</strong> - Node.js, full-stack web development</li>
+                    <li><strong>Go (Golang)</strong> - Modern backend systems</li>
+                </ul>
+            </div>
+
+            <div class="skills-category" style="margin-top: 40px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px;">Energy & Industrial Systems</h3>
+                <ul class="skills-list">
+                    <li><strong>SCADA Systems</strong> - Eclipse SCADA, real-time monitoring</li>
+                    <li><strong>Node-RED</strong> - Industrial automation workflows</li>
+                    <li><strong>Virtual Power Plants (VPP)</strong> - Grid balancing, asset management</li>
+                    <li><strong>Industrial Protocols</strong> - Modbus, IEC104, Profibus</li>
+                    <li><strong>IoT & Hardware Integrations</strong> - PLC connections, sensor networks</li>
+                </ul>
+            </div>
+
+            <div class="skills-category" style="margin-top: 40px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px;">Databases & Storage</h3>
+                <ul class="skills-list">
+                    <li><strong>PostgreSQL</strong> - Primary database for enterprise applications</li>
+                    <li><strong>Oracle</strong> - Enterprise data management</li>
+                    <li><strong>MySQL</strong> - Web applications and data storage</li>
+                    <li><strong>SQL Server</strong> - Microsoft stack applications</li>
+                    <li><strong>Redis</strong> - Caching and session management</li>
+                    <li><strong>Memcached</strong> - High-performance caching</li>
+                    <li><strong>Elasticsearch</strong> - Search and analytics</li>
+                    <li><strong>MongoDB</strong> - Document-based applications</li>
+                </ul>
+            </div>
+
+            <div class="skills-category" style="margin-top: 40px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px;">Infrastructure & DevOps</h3>
+                <ul class="skills-list">
+                    <li><strong>Kubernetes</strong> - Container orchestration and automation</li>
+                    <li><strong>Docker</strong> - Containerization</li>
+                    <li><strong>Linux/Windows Administration</strong> - Server management</li>
+                    <li><strong>Nginx, Apache, IIS, HAProxy</strong> - Web servers and load balancing</li>
+                </ul>
+            </div>
+
+            <div class="skills-category" style="margin-top: 40px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px;">APIs & Integration</h3>
+                <ul class="skills-list">
+                    <li><strong>REST/SOAP APIs</strong> - Internal and external product integration</li>
+                    <li><strong>Microservices Architecture</strong> - Distributed systems design</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="big-heading">Professional Experience</h2>
+            <div class="jobs">
+                <div class="jobs-tabs">
+                    <button class="jobs-tab active" data-id="tab-0">
+                        <span>E.ON Current</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-1">
+                        <span>E.ON Ops</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-2">
+                        <span>IBH Systems</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-3">
+                        <span>Violer CEO</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-4">
+                        <span>JetSoft</span>
+                    </button>
+                    <button class="jobs-tab" data-id="tab-5">
+                        <span>Getupdated</span>
+                    </button>
+                </div>
+                
+                <div class="jobs-content">
+                    <div class="jobs-tabpanel active" id="tab-0">
+                        <h3>Technical Product Developer <span class="company">@ E.ON</span></h3>
+                        <p class="jobs-range">January 2021 - Present</p>
+                        <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">Essen, Germany</p>
+                        <div>
+                            <ul>
+                                <li>Migrated product development from Eclipse SCADA to Node-RED, modernizing development pipeline</li>
+                                <li>Onboarded new asset types to Virtual Power Plant (VPP) and developed steering box for battery assets</li>
+                                <li>Automated onboarding processes using Kubernetes, streamlining deployment and management</li>
+                                <li>Enhanced system scalability and reliability through modern architecture patterns</li>
+                                <li>Led technical implementation of distributed energy resource integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-1">
+                        <h3>Technical Operations Manager <span class="company">@ E.ON</span></h3>
+                        <p class="jobs-range">October 2019 - January 2021</p>
+                        <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">Essen, Germany</p>
+                        <div>
+                            <ul>
+                                <li>Technical expert for various flexibility products and energy assets</li>
+                                <li><strong>Product ownership</strong> and management of UK balancing products</li>
+                                <li><strong>Stakeholder management</strong> (internal and external partnerships)</li>
+                                <li>Led implementation of new projects across UK and Germany markets</li>
+                                <li><strong>Responsible for 24/7 operation</strong> of Virtual Power Plant (VPP) systems</li>
+                                <li>Managed critical energy trading and grid balancing operations</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-2">
+                        <h3>Software Developer <span class="company">@ IBH Systems (E.ON)</span></h3>
+                        <p class="jobs-range">February 2017 - June 2018</p>
+                        <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">Munich, Germany</p>
+                        <div>
+                            <ul>
+                                <li><strong>Java development</strong> with Eclipse SCADA framework</li>
+                                <li><strong>IoT system integration</strong> and industrial automation development</li>
+                                <li><strong>Industrial protocol implementation</strong> (Modbus, IEC104) for power plant connectivity</li>
+                                <li>Developed <strong>real-time data delivery systems</strong> from power plants</li>
+                                <li>Connected new customers with various PLCs and industrial control systems</li>
+                                <li>Maintained and optimized existing SCADA infrastructure</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-3">
+                        <h3>CEO & Founder <span class="company">@ Violer</span></h3>
+                        <p class="jobs-range">September 2015 - September 2016</p>
+                        <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">Gothenburg, Sweden</p>
+                        <div>
+                            <ul>
+                                <li>Founded and led software development company</li>
+                                <li>Developed applications using <strong>Node.js and Meteor.js</strong></li>
+                                <li>Integrated databases (MongoDB) with software applications</li>
+                                <li>Managed full software development lifecycle from conception to deployment</li>
+                                <li>Built client relationships and managed technical team</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-4">
+                        <h3>System Developer <span class="company">@ JetSoft AB</span></h3>
+                        <p class="jobs-range">June 2015 - August 2015</p>
+                        <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">Sweden</p>
+                        <div>
+                            <ul>
+                                <li>Built interactive dashboard for ERP system using <strong>Angular</strong> front-end and <strong>NancyFX</strong> back-end</li>
+                                <li>Developed responsive web interfaces for business intelligence</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-tabpanel" id="tab-5">
+                        <h3>System Developer <span class="company">@ Getupdated Internet Marketing</span></h3>
+                        <p class="jobs-range">June 2012 - May 2015</p>
+                        <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">3 years</p>
+                        <div>
+                            <ul>
+                                <li>Developed modular <strong>report generation/scheduling system</strong> using <strong>C# and .NET</strong></li>
+                                <li>Designed and implemented <strong>automated reporting workflows</strong></li>
+                                <li><strong>Full-stack web development</strong> with focus on back-end systems</li>
+                                <li>Built scalable data processing and reporting infrastructure</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="big-heading">Education & Certifications</h2>
+            <div class="education-content">
+                <div class="education-item">
+                    <h3>Bachelor's Degree <span class="company">@ Islamic Azad University</span></h3>
+                    <p class="education-field">Environmental Health</p>
+                </div>
+                
+                <div class="certification-item" style="margin-top: 30px;">
+                    <h3>Microsoft Certified Solutions Developer (MCSD)</h3>
+                    <p class="certification-issuer">Microsoft • March 2004</p>
+                    <p style="color: var(--text-secondary); font-size: 14px; margin-top: 8px;">Enterprise-level software development certification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section id="languages">
+        <div class="container">
+            <h2 class="big-heading">Languages</h2>
+            <div class="languages-grid">
+                <div class="language-item">
+                    <h3>Persian</h3>
+                    <p>Native</p>
+                </div>
+                <div class="language-item">
+                    <h3>Turkish</h3>
+                    <p>Native</p>
+                </div>
+                <div class="language-item">
+                    <h3>English</h3>
+                    <p>Professional Working</p>
+                </div>
+                <div class="language-item">
+                    <h3>German</h3>
+                    <p>Good</p>
+                </div>
+                <div class="language-item">
+                    <h3>Swedish</h3>
+                    <p>Good</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="big-heading">Get In Touch</h2>
+            <h3 style="font-size: clamp(40px, 8vw, 60px); margin: 0 0 20px; font-weight: 600; color: var(--text-primary);">Let's Connect</h3>
+            <p style="max-width: 600px; margin: 0 0 50px; font-size: 20px;">Interested in discussing energy technology, SCADA systems, or potential collaboration opportunities? I'd love to hear from you!</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="mailto:info@pabbasian.com" class="btn">Send Email</a>
+                <a href="cv.pdf" target="_blank" class="btn">Download Full CV</a>
+                <a href="/" class="btn" style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">View Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" style="text-align: center; padding: 30px 15px; color: var(--text-secondary); font-family: var(--font-mono); font-size: 14px;">
+        <p>© 2025 Payman Abbasian • Last Updated: January 2025</p>
     </footer>
-    <script src="js/bg-canvas.js"></script>
-    <!--script( src='js/ga.js')-->
-  </body>
+
+    <script>
+        // Experience tabs functionality
+        const tabs = document.querySelectorAll('.jobs-tab');
+        const panels = document.querySelectorAll('.jobs-tabpanel');
+        
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and panels
+                tabs.forEach(function(t) {
+                    t.classList.remove('active');
+                });
+                panels.forEach(function(p) {
+                    p.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab and corresponding panel
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-id');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
 </html>
