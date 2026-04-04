@@ -1,24 +1,75 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Payman Abbasian's blog</title>
-    <atom:link href="https://www.pabbasian.com//feed.xml" rel="self" type="application/rss+xml"></atom:link>
-    <link>https://www.pabbasian.com/</link>
-    <description>some description</description>
-    <pubDate>Wed, 04 Jan 2017 01:00:00 +0100</pubDate>
-    <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
-    <language>en</language>
+    <title>Payman Abbasian - Industrial IoT &amp; SCADA Architect</title>
+    <atom:link href="https://pabbasian.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <link>https://pabbasian.com/</link>
+    <description>Professional insights on Industrial IoT, SCADA systems, Virtual Power Plants, and energy automation from an experienced Solution Architect at E.ON. Specializing in Node-RED, Eclipse SCADA, and enterprise energy management systems.</description>
+    <pubDate>Sat, 28 Sep 2025 12:00:00 +0100</pubDate>
+    <lastBuildDate>Sat, 28 Sep 2025 12:00:00 +0100</lastBuildDate>
+    <generator>Professional Portfolio - Industrial IoT Expert</generator>
+    <language>en-US</language>
+    <category>Technology</category>
+    <category>Industrial IoT</category>
+    <category>Energy Automation</category>
+    <category>SCADA Systems</category>
+    <managingEditor>info@pabbasian.com (Payman Abbasian)</managingEditor>
+    <webMaster>info@pabbasian.com (Payman Abbasian)</webMaster>
+    <copyright>Copyright 2025 Payman Abbasian</copyright>
+    <image>
+      <url>https://pabbasian.com/favicon.ico</url>
+      <title>Payman Abbasian - Industrial IoT &amp; SCADA Architect</title>
+      <link>https://pabbasian.com/</link>
+    </image>
+    
     <item>
-      <title>Hello there</title>
-      <link>https://www.pabbasian.com//articles/hello-world/</link>
-      <pubDate>Wed, 04 Jan 2017 01:00:00 +0100</pubDate>
-      <guid isPermaLink="true">https://www.pabbasian.com//articles/hello-world/</guid>
-      <author></author>
-      <description>&lt;p&gt;It’s my first blog post.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;A new blog&lt;/p&gt;
-&lt;p&gt;Here I am going to share some of my daily life experiences creating things with computers and I hope you don’t mind if you find some &lt;em&gt;notes to self&lt;/em&gt; most of the time.&lt;/p&gt;
-</description>
+      <title>Industrial IoT &amp; SCADA Architecture: Transforming Energy Systems at Scale</title>
+      <link>https://pabbasian.com/cv.html</link>
+      <pubDate>Sat, 28 Sep 2025 12:00:00 +0100</pubDate>
+      <guid isPermaLink="true">https://pabbasian.com/cv.html</guid>
+      <author>info@pabbasian.com (Payman Abbasian)</author>
+      <category>Industrial IoT</category>
+      <category>SCADA Systems</category>
+      <category>Virtual Power Plants</category>
+      <category>Energy Automation</category>
+      <description>&lt;p&gt;As a Technical Product Developer at E.ON, I specialize in modernizing energy infrastructure through advanced SCADA systems and Industrial IoT solutions. My work focuses on integrating distributed energy resources into Virtual Power Plants, enabling grid balancing and sustainable energy management at enterprise scale.&lt;/p&gt;
+&lt;h3&gt;Core Expertise Areas:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Eclipse SCADA to Node-RED Migration:&lt;/strong&gt; Leading the modernization of legacy industrial systems to improve scalability and maintainability&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtual Power Plant (VPP) Development:&lt;/strong&gt; Onboarding new asset types including battery systems and renewable energy sources&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Kubernetes Automation:&lt;/strong&gt; Streamlining deployment processes for industrial IoT applications&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Industrial Protocol Integration:&lt;/strong&gt; Working with Modbus, IEC104, and PLC systems for real-time data delivery&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With nearly two decades of full-stack development experience, I bring deep technical expertise to complex energy challenges. My background spans enterprise software development, system architecture, and hands-on industrial automation implementation.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pabbasian.com/cv.html"&gt;View my complete professional experience and technical skills&lt;/a&gt;&lt;/p&gt;</description>
     </item>
+    
+    <item>
+      <title>Professional Portfolio: Solution Architect &amp; Energy Expert</title>
+      <link>https://pabbasian.com/</link>
+      <pubDate>Fri, 27 Sep 2025 10:00:00 +0100</pubDate>
+      <guid isPermaLink="true">https://pabbasian.com/</guid>
+      <author>info@pabbasian.com (Payman Abbasian)</author>
+      <category>Portfolio</category>
+      <category>System Architecture</category>
+      <category>Enterprise Software</category>
+      <description>&lt;p&gt;Explore my professional portfolio showcasing two decades of software development and system architecture experience. Currently transforming energy systems at E.ON, with expertise in SCADA systems, Industrial IoT, and Virtual Power Plant technologies.&lt;/p&gt;
+&lt;p&gt;Featured projects include enterprise-scale energy management systems, real-time data processing applications, and modern web technologies. My work spans from industrial automation to full-stack development, demonstrating versatility across multiple technology stacks.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pabbasian.com/"&gt;Visit my portfolio to learn more&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SCADA Systems &amp; Industrial Automation Excellence</title>
+      <link>https://pabbasian.com/#experience</link>
+      <pubDate>Thu, 26 Sep 2025 14:30:00 +0100</pubDate>
+      <guid isPermaLink="false">scada-industrial-automation-2025</guid>
+      <author>info@pabbasian.com (Payman Abbasian)</author>
+      <category>SCADA</category>
+      <category>Industrial Protocols</category>
+      <category>Real-time Systems</category>
+      <description>&lt;p&gt;Deep dive into my experience with Eclipse SCADA framework, Java development, and industrial protocol implementation including Modbus and IEC104. Learn how I've connected power plants and industrial systems to create reliable, real-time data delivery solutions.&lt;/p&gt;
+&lt;p&gt;Key achievements include connecting new customers with various PLCs, maintaining critical SCADA infrastructure, and developing robust industrial control systems for the energy sector.&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

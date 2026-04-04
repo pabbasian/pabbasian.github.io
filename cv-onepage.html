@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Payman Abbasian — CV</title>
+  <style>
+    /* Minimal modern A4 CV */
+    @page { size: A4; margin: 12mm; }
+    
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color:#1a1a1a; background:#fff; margin:0; padding:0; font-size:9.5pt; line-height:1.45;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
+    
+    .sheet{width:210mm; min-height:297mm; padding:18mm 16mm; margin:0 auto;}
+    
+    /* Header */
+    header{border-bottom:2px solid #000; padding-bottom:14px; margin-bottom:16px}
+    .name{font-size:26px; font-weight:700; color:#000; margin-bottom:3px; letter-spacing:-0.5px}
+    .title{font-size:11pt; color:#404040; font-weight:400; margin-bottom:10px}
+    .contact{display:flex; gap:12px; flex-wrap:wrap; font-size:9pt; color:#404040}
+    .contact span{white-space:nowrap}
+
+    /* Layout */
+    .wrap{display:grid; grid-template-columns: 68mm 1fr; gap:16mm; margin-top:16px}
+    
+    /* Left sidebar */
+    .left{display:flex; flex-direction:column; gap:16px}
+    
+    h3{
+      font-size:10pt; font-weight:700; color:#000; margin:0 0 8px 0;
+      text-transform:uppercase; letter-spacing:0.8px; border-bottom:1px solid #000;
+      padding-bottom:4px;
+    }
+    
+    /* Skills list */
+    .skills{font-size:9pt; color:#1a1a1a; line-height:1.6}
+    .skill-group{margin-bottom:10px}
+    .skill-group strong{display:block; font-size:8.5pt; color:#404040; text-transform:uppercase; 
+                        letter-spacing:0.5px; margin-bottom:3px}
+    
+    /* Right main */
+    .right{display:flex; flex-direction:column; gap:14px}
+    
+    .summary{
+      font-size:9.5pt; color:#1a1a1a; line-height:1.5; text-align:justify; margin-bottom:4px;
+    }
+    
+    /* Experience */
+    .job{margin-bottom:12px; padding-left:0}
+    .job h4{
+      font-size:10pt; font-weight:600; color:#000; margin-bottom:2px;
+    }
+    .job .company{font-weight:700}
+    .job-meta{
+      color:#606060; font-size:8.5pt; margin-bottom:6px; font-style:italic;
+    }
+    
+    ul{margin:4px 0 0 18px; padding:0}
+    li{
+      margin-bottom:3px; font-size:9pt; color:#1a1a1a; line-height:1.4;
+    }
+    
+    /* Compact sections */
+    .compact{font-size:9pt; color:#1a1a1a; line-height:1.5}
+    .compact-item{margin-bottom:8px}
+    .compact-item strong{color:#000; display:block; margin-bottom:2px}
+    
+    /* Footer */
+    .footer{
+      margin-top:14px; padding-top:10px; border-top:1px solid #ccc;
+      font-size:8pt; color:#606060; text-align:center;
+    }
+
+    /* Print */
+    @media print{
+      body{margin:0}
+      .sheet{padding:14mm; box-shadow:none}
+      a{color:inherit; text-decoration:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <header>
+      <div class="name">Payman Abbasian</div>
+      <div class="title">Technical Product Developer | Industrial IoT & SCADA Architect</div>
+      <div class="contact">
+        <span>📧 info@pabbasian.com</span>
+        <span>🌐 pabbasian.com</span>
+        <span>📍 Essen, North Rhine-Westphalia, Germany</span>
+        <span>🔗 linkedin.com/in/paaymanabbasian</span>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <aside class="left">
+        <section>
+          <h3>Programming</h3>
+          <div class="skills">
+            <div class="skill-group">
+              <strong>Languages</strong>
+              Java, C#, JavaScript, Node.js, Go (Golang)
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Industrial Systems</h3>
+          <div class="skills">
+            <div class="skill-group">
+              <strong>SCADA & Automation</strong>
+              Eclipse SCADA, Node-RED, Industrial IoT
+            </div>
+            <div class="skill-group">
+              <strong>Protocols</strong>
+              Modbus TCP/RTU, IEC104, Profibus, OPC-UA
+            </div>
+            <div class="skill-group">
+              <strong>Energy Systems</strong>
+              Virtual Power Plants, Battery Management, Grid Integration
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Infrastructure</h3>
+          <div class="skills">
+            <div class="skill-group">
+              <strong>Cloud & DevOps</strong>
+              Kubernetes, Docker, Azure, AWS, CI/CD Pipelines
+            </div>
+            <div class="skill-group">
+              <strong>Databases</strong>
+              PostgreSQL, Oracle, MySQL, SQL Server, Redis, Elasticsearch
+            </div>
+            <div class="skill-group">
+              <strong>Integration</strong>
+              REST/SOAP APIs, Message Queuing, Event-driven Architecture
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Education</h3>
+          <div class="compact">
+            <div class="compact-item">
+              <strong>Bachelor's Degree</strong>
+              Environmental Health<br>
+              Islamic Azad University
+            </div>
+            <div class="compact-item">
+              <strong>Microsoft Certified Solutions Developer (MCSD)</strong>
+              Microsoft, March 2004
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Languages</h3>
+          <div class="compact">
+            Persian (Native)<br>
+            Turkish (Native)<br>
+            English (Professional Working)<br>
+            German (Good)<br>
+            Swedish (Good)
+          </div>
+        </section>
+      </aside>
+
+      <section class="right">
+        <div>
+          <h3>Professional Summary</h3>
+          <div class="summary">
+            Full-stack developer specializing in energy technology and industrial automation with nearly two decades of experience. Expert in system design, programming, and object-oriented software design with deep understanding of energy systems. Currently transforming distributed energy resources and Virtual Power Plant systems at E.ON, one of Europe's largest energy corporations.
+          </div>
+        </div>
+
+        <div>
+          <h3>Professional Experience</h3>
+          
+          <div class="job">
+            <h4>Technical Product Developer <span class="company">@ E.ON</span></h4>
+            <div class="job-meta">January 2021 – Present | Essen, Germany</div>
+            <ul>
+              <li>Migrated product development from Eclipse SCADA to Node-RED, modernizing development pipeline</li>
+              <li>Onboarded new asset types to Virtual Power Plant and developed steering box for battery assets</li>
+              <li>Automated onboarding processes using Kubernetes, streamlining deployment and management</li>
+              <li>Enhanced system scalability and reliability through modern architecture patterns</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>Technical Operations Manager <span class="company">@ E.ON</span></h4>
+            <div class="job-meta">October 2019 – January 2021 | Essen, Germany</div>
+            <ul>
+              <li>Technical expert for various flexibility products and energy assets</li>
+              <li>Product ownership and management of UK balancing products</li>
+              <li>Stakeholder management across internal teams and external partnerships</li>
+              <li>Led implementation of new projects across UK and Germany markets</li>
+              <li>Responsible for 24/7 operation of Virtual Power Plant systems</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>Software Developer <span class="company">@ IBH Systems (E.ON)</span></h4>
+            <div class="job-meta">February 2017 – June 2018 | Munich, Germany</div>
+            <ul>
+              <li>Java development with Eclipse SCADA framework for industrial automation</li>
+              <li>IoT system integration and industrial protocol communications</li>
+              <li>Developed real-time data delivery systems from power plants to grid operators</li>
+              <li>Connected customers via various PLCs using Modbus, IEC104, and Profibus protocols</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>CEO & Founder <span class="company">@ Violer</span></h4>
+            <div class="job-meta">September 2015 – September 2016 | Gothenburg, Sweden</div>
+            <ul>
+              <li>Founded and led software development company</li>
+              <li>Developed applications using Node.js, Meteor.js, and MongoDB</li>
+              <li>Managed full software development lifecycle from conception to deployment</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>System Developer <span class="company">@ JetSoft AB</span></h4>
+            <div class="job-meta">June 2015 – August 2015 | Sweden</div>
+            <ul>
+              <li>Built interactive dashboard for ERP system using Angular frontend and NancyFX backend</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>System Developer <span class="company">@ Getupdated Internet Marketing</span></h4>
+            <div class="job-meta">June 2012 – May 2015 | 3 years</div>
+            <ul>
+              <li>Developed modular report generation and scheduling system using C# and .NET</li>
+              <li>Designed and implemented automated reporting workflows</li>
+              <li>Full-stack web development with focus on back-end systems</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h3>Key Projects</h3>
+          <div class="compact">
+            <div class="compact-item">
+              <strong>SCADA to Node-RED Migration</strong>
+              Led complete migration from legacy Eclipse SCADA to Node-RED, modernizing the entire development pipeline and enabling faster deployment of energy management features.
+            </div>
+            <div class="compact-item">
+              <strong>Kubernetes Automation Platform</strong>
+              Implemented comprehensive automation using Kubernetes for energy asset management, significantly reducing manual effort and improving deployment reliability.
+            </div>
+            <div class="compact-item">
+              <strong>VPP Battery Asset Management</strong>
+              Developed custom steering box solutions for battery assets and created automated onboarding processes for new asset types in Virtual Power Plant infrastructure.
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer">
+          www.pabbasian.com • Updated January 2025
+        </footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
+<body>
+  <div class="sheet">
+    <header>
+      <div class="name">Payman Abbasian</div>
+      <div class="title">Industrial IoT & SCADA Architect • Technical Product Developer</div>
+      <div class="contact">
+        <span class="badge">📧 info@pabbasian.com</span>
+        <span class="badge">🌐 pabbasian.com</span>
+        <span class="badge">📍 Essen, Germany</span>
+        <span class="badge">💼 E.ON</span>
+        <span class="badge">🔗 linkedin.com/in/paaymanabbasian</span>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <aside class="left">
+        <section class="section">
+          <h3>Core Skills</h3>
+          <div class="skills">
+            <span class="pill">Java</span>
+            <span class="pill">C# / .NET</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">Node.js</span>
+            <span class="pill">Go</span>
+            <span class="pill">Kubernetes</span>
+            <span class="pill">Docker</span>
+            <span class="pill">PostgreSQL</span>
+            <span class="pill">Redis</span>
+            <span class="pill">MySQL</span>
+            <span class="pill">Elasticsearch</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <h3>Industrial Tech</h3>
+          <div class="skills">
+            <span class="pill">Eclipse SCADA</span>
+            <span class="pill">Node-RED</span>
+            <span class="pill">Modbus TCP/RTU</span>
+            <span class="pill">IEC104</span>
+            <span class="pill">Profibus</span>
+            <span class="pill">OPC-UA</span>
+            <span class="pill">PLC Integration</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <h3>Domain Focus</h3>
+          <div class="info-block">
+            <div class="info-label">Virtual Power Plants</div>
+            24/7 operations, asset onboarding, grid balancing, frequency regulation
+          </div>
+          <div class="info-block">
+            <div class="info-label">Battery Energy Storage</div>
+            Steering box development, real-time monitoring, asset integration
+          </div>
+        </section>
+
+        <section class="section">
+          <h3>Languages</h3>
+          <div style="font-size:9.5pt; color:#334155; line-height:1.6">
+            <strong>Persian</strong> — Native<br>
+            <strong>Turkish</strong> — Native<br>
+            <strong>English</strong> — Professional<br>
+            <strong>German</strong> — Good<br>
+            <strong>Swedish</strong> — Good
+          </div>
+        </section>
+
+        <section class="section">
+          <h3>Education</h3>
+          <div style="font-size:9.5pt; color:#334155; line-height:1.5">
+            <div style="font-weight:600; color:#0f172a">BSc Environmental Health</div>
+            Islamic Azad University
+            <div style="margin-top:8px; font-weight:600; color:#0f172a">MCSD Certification</div>
+            Microsoft, March 2004
+          </div>
+        </section>
+      </aside>
+
+      <section class="right">
+        <div class="section">
+          <h3>Professional Summary</h3>
+          <div class="summary">
+            Technical Product Developer with <span class="highlight">~20 years</span> of experience building resilient Industrial IoT and SCADA systems for the energy sector. Currently at E.ON, leading digital transformation of <span class="highlight">Virtual Power Plants</span> and distributed energy resources. Expert in system architecture, real-time protocols, and enterprise-scale migrations (Eclipse SCADA → Node-RED). Strong track record in <span class="highlight">Kubernetes automation</span>, battery asset integration, and 24/7 operational systems across UK and German energy markets.
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Professional Experience</h3>
+          
+          <div class="job">
+            <h4>Technical Product Developer — <span class="company">E.ON</span></h4>
+            <div class="muted">Jan 2021 – Present • Essen, Germany</div>
+            <ul>
+              <li>Led <strong>enterprise-wide migration</strong> from Eclipse SCADA to Node-RED, modernizing development workflows and deployment velocity</li>
+              <li>Designed and implemented <strong>steering box solutions</strong> for battery assets in Virtual Power Plant infrastructure</li>
+              <li>Built <strong>Kubernetes automation platform</strong> for energy asset onboarding, reducing manual effort by 70%+</li>
+              <li>Enhanced system scalability through modern architecture patterns (event-driven, microservices)</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>Technical Operations Manager — <span class="company">E.ON</span></h4>
+            <div class="muted">Oct 2019 – Jan 2021 • Essen, Germany</div>
+            <ul>
+              <li>Owned <strong>24/7 VPP operations</strong> managing distributed energy resources across UK and German markets</li>
+              <li>Led product ownership for balancing products; managed cross-functional stakeholder relationships</li>
+              <li>Implemented new flexibility products and energy trading infrastructure projects</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>Software Developer — <span class="company">IBH Systems (E.ON)</span></h4>
+            <div class="muted">Feb 2017 – Jun 2018 • Munich, Germany</div>
+            <ul>
+              <li>Developed <strong>real-time data systems</strong> connecting power plants to transmission operators using Java/Eclipse SCADA</li>
+              <li>Implemented industrial protocol integrations (Modbus, IEC104, Profibus) for diverse PLC systems</li>
+              <li>Built IoT system integrations for industrial automation and energy monitoring</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>CEO & Founder — <span class="company">Violer</span></h4>
+            <div class="muted">Sep 2015 – Sep 2016 • Gothenburg, Sweden</div>
+            <ul>
+              <li>Founded software development company; delivered Node.js/Meteor.js applications with MongoDB backends</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Key Technical Achievements</h3>
+          <ul style="margin-left:0; columns:2; column-gap:20px">
+            <li style="break-inside:avoid">SCADA platform modernization across multiple teams</li>
+            <li style="break-inside:avoid">Automated Kubernetes deployment pipelines</li>
+            <li style="break-inside:avoid">Battery asset steering box architecture</li>
+            <li style="break-inside:avoid">Real-time grid operator data delivery systems</li>
+            <li style="break-inside:avoid">Multi-protocol PLC integration framework</li>
+            <li style="break-inside:avoid">24/7 VPP operational monitoring systems</li>
+          </ul>
+        </div>
+
+        <footer class="section">
+          <div class="foot">
+            Available for consulting and speaking engagements in energy tech, Industrial IoT, and SCADA systems • Resume and portfolio: pabbasian.com • Updated January 2025
+          </div>
+        </footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
