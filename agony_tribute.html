@@ -39,6 +39,10 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
+        // Initialize player position after canvas is sized
+        player.y = canvas.height / 2;
+
+        let frameCount = 0;
         let gameRunning = true;
         let score = 0;
         let playerHealth = 100;
@@ -46,7 +50,7 @@
 
         const player = {
             x: 100,
-            y: canvas.height / 2,
+            y: 0,
             width: 50,
             height: 35,
             vx: 0,
@@ -496,7 +500,7 @@
             generateParallaxElements();
         }
 
-        let frameCount = 0;
+        let enemySpawnTimer = 0;
 
         function gameLoop() {
             if (!gameRunning) {
